@@ -30,8 +30,3 @@ ports:
     onOpen: ignore
   - port: 4200
     onOpen: open-browser
-
-# specify the default workspace layout
-layout: 
-  - "frontend 50% 50%"
-  - "backend 50% 50%"
