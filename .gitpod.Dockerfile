@@ -15,7 +15,7 @@ ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=admin
 
 # Create a new database called 'mydb'
-RUN sudo -u postgres createdb codechallenge
+RUN sudo PGPASSWORD=admin createdb -U postgres codechallenge
 
 # Expose the PostgreSQL port
 EXPOSE 5432
