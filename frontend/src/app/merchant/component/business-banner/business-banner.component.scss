@@ -1,0 +1,20 @@
+@import "../../../../styles/sass/abstracts/variables.scss";
+@import "../../../../styles/sass/abstracts/mixins/mediaquerymanager.scss";
+
+.code-challenge-bb-container {
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 7.5%;
+    @include respond(phone) {
+        padding: 0;
+        margin-bottom: 3rem;
+        margin-left: 0;
+    }
+
+    &-slick {
+        overflow-x: hidden;
+        &__img {
+            width: 10rem;
+        }
+    }
+}

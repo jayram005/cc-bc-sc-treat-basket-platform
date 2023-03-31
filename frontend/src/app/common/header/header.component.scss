@@ -1,0 +1,53 @@
+@import '../../../styles/sass/abstracts/variables';
+@import '../../../styles/sass/abstracts/mixins/mediaquerymanager';
+@import '../../../styles/sass/abstracts/mixins/mixins';
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+.code-challenge-flex-center {
+    @include flex-center;
+    @include respond(phone){
+        display: block;
+    }
+}
+
+.code-challenge-header {
+    background-color: $code-challenge-brand-blue-dark;
+    padding: 4rem 0;
+    @include respond(phone){
+        padding: 1rem 0;
+    }
+    &-container {
+        width: 85%;
+        padding: 0 1.6rem;
+        margin: 0 auto;
+        @include respond(phone){
+            width: 90%;
+        }
+    }
+    &-logo {
+        width: 25.6rem;
+        @include respond(phone) {
+            width: 9rem;
+        }
+        @include respond(tab-port) {
+            width: 16rem;
+        }
+        img {
+            width: inherit;
+        }
+    }
+    &-search {
+        padding-bottom: 2rem;
+        width: 100%;
+        max-width: 50rem;
+        @include respond(phone){
+            padding-bottom: 0;
+            padding-top: 1.6rem;
+            width: 100%;
+        }
+        @include respond(tab-port){
+            padding-bottom: 0;
+            max-width: 35rem;
+        }
+    }
+}

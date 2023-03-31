@@ -1,0 +1,81 @@
+@import '../../../styles/sass/abstracts/variables';
+@import '../../../styles/sass/abstracts/mixins/mediaquerymanager';
+@import '../../../styles/sass/abstracts/mixins/mixins';
+
+.code-challenge-footer{
+    background: $code-challenge-footer-gray;
+    font-weight: 500;
+    color: $color-black;
+    padding: 6rem 0;
+    text-align: center;
+    &--highlight {
+        color:$code-challenge-footer-txt-color;
+    }
+    &__card {
+        background: inherit;
+        // font-weight: inherit;
+    }
+    &__content{
+        p {
+            padding-bottom: 1rem;
+            font-size: 1.7rem;
+            .mat-icon{
+                height: auto;
+                width: auto;
+                vertical-align: middle;
+                position: relative;
+                top: -1px;
+            }
+        }
+        @include code-challenge-mb-0;
+    }
+    &__actions {
+        a {
+            margin: 0 1rem;            
+        }
+        img {
+            width: 2.5rem;           
+        }
+    }
+    &--reserved{
+        @include respond(phone){
+            display: block;
+        }
+    } 
+    .mat-card {
+        font-family: inherit;
+    }   
+    .mat-card-actions {
+       @include code-challenge-card-center-align;
+       @include code-challenge-mb-0;
+    } 
+    .fb-like, .fb-share-button {
+        margin: 0.5rem;
+    }       
+}
+
+/* fallback */
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: inherit;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    font-feature-settings: 'liga';
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}

@@ -1,0 +1,8 @@
+<div class="code-challenge-bb-container">
+    <mat-grid-list cols=2 rowHeight="20rem" gutterSize="3rem" >
+        <mat-grid-tile *ngFor="let tile of tiles">
+            <img loading="lazy" width="100%" src="{{tile.urls}}" alt="{{tile.text}}">
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+

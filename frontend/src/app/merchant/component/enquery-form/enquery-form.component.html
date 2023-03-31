@@ -1,0 +1,75 @@
+<div class="code-challenge-merchant-form">
+  <code-challenge-solutions-banner *ngIf=isPhone></code-challenge-solutions-banner>
+  <code-challenge-business-banner *ngIf=isPhone></code-challenge-business-banner>
+  <div class="code-challenge-merchant-form__container">
+    <div class="code-challenge-merchant-form-header">
+      <div class="code-challenge-merchant-form-header__title">
+        List Your Business
+      </div>
+    </div>
+    <mat-grid-list class="code-challenge-merchant-form-info" [formGroup]="merchantForm" cols="1" rowHeight="7rem">
+      <mat-grid-tile>
+        <mat-form-field class="code-challenge-merchant-form-info__field">
+          <input matInput type="text" placeholder="Business Name" formControlName="mName">
+          <mat-error *ngIf="hasError('mName', 'required')">Business name is required</mat-error>
+          <mat-error *ngIf="hasError('mName', 'pattern')">Business name must contain only letters and spaces</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="code-challenge-merchant-form-info__field">
+          <input matInput type="text" placeholder="Contact Name" formControlName="fname">
+          <mat-error *ngIf="hasError('fname', 'required')">Contact name is required</mat-error>
+          <mat-error *ngIf="hasError('fname', 'pattern')">Contact name must contain only letters and spaces</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="code-challenge-merchant-form-info__field">
+          <input matInput type="email" placeholder="Contact Email" formControlName="email"
+            class="code-challenge-merchant-form-info__email">
+          <mat-error *ngIf="hasError('email', 'required')">Email ID is required</mat-error>
+          <mat-error *ngIf="hasError('email', 'pattern')">Not a valid email</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="code-challenge-merchant-form-info__field">
+          <input matInput type="text" placeholder="Contact Phone" formControlName="phoneNo" maxlength="15" code-challengeDigitOnly>
+          <mat-hint>For us to connect with you</mat-hint>
+          <mat-error *ngIf="hasError('phoneNo', 'required')">Phone number is required</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="code-challenge-merchant-form-info__field field-even">
+          <input matInput type="text" placeholder="Business Type" formControlName="businessType">
+          <mat-error *ngIf="hasError('businessType', 'required')">Business type is required</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="code-challenge-merchant-form-info__field">
+          <input matInput type="url" placeholder="Business Website" formControlName="businessUrl" maxlength="50">
+          <mat-error *ngIf="hasError('businessUrl', 'pattern')">Webiste URL is invalid</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="code-challenge-merchant-form-info__field">
+          <input matInput type="text" placeholder="Business Address" formControlName="businessAddress" maxlength="100">
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list class="code-challenge-merchant-form-info" [formGroup]="merchantForm" cols="1" rowHeight="9rem">
+      <mat-grid-tile>
+        <div class="code-challenge-merchant-form-info__captcha">
+          <re-captcha formControlName="recaptchaReactive"></re-captcha>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div @onClickInfoMsg (click)="onClickInfoMsg()" *ngIf="infoMsg" class="code-challenge-merchant-form-success">
+      <span class="code-challenge-merchant-form-success__msg">{{infoMsg}}</span>
+    </div>
+    <mat-card @onClickTechErr (click)="onClickTechErr()" *ngIf="techErrorMsg" class="code-challenge-merchant-form-error">
+      <p class="code-challenge-merchant-form-error__info">{{ errorTitle }}</p>
+      <span class="code-challenge-merchant-form-error__msg">{{errorSubtitle}}</span>
+    </mat-card>
+    <button mat-raised-button [disabled]="!merchantForm.valid" (click)="onSubmit()" type="submit"
+      class="code-challenge-merchant-form-submit">Submit</button>
+  </div>
+</div>

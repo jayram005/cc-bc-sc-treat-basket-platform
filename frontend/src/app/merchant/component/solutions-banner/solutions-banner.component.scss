@@ -1,0 +1,31 @@
+@import "../../../../styles/sass/abstracts/variables.scss";
+@import "../../../../styles/sass/abstracts/mixins/mediaquerymanager.scss";
+
+.code-challenge-sb-container {
+    background-color: $code-challenge-color-gray-3;
+    @include respond(phone) {
+        border-radius: 0.5rem 0.5rem 0 0;
+        margin-bottom: 1rem;
+    }
+
+    &-grid1 {
+        width: 47%;
+        display: flex;
+        line-height: 3.5rem;
+        margin-left: 7.5%;
+        padding: 1rem 0;
+        font-size: 1.5rem;
+        color: $color-black;
+        @include respond(phone) {
+            width: 100%;
+            line-height: 2.5rem;
+        }
+        &__leftSection {
+            width: 50%;
+        }
+
+        &__rightSection {
+            width: 50%;
+        }
+    }
+}
