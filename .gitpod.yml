@@ -3,7 +3,7 @@ image: gitpod/workspace-full
 # prebuild the workspace to speed up development
 tasks:
   - name: Terminal 
-    before: sudo apt-get update && sudo apt-get install -y postgresql postgresql-contrib && sudo apt-get install -y Node.js && npm install -g @angular/cli@13.1.0  
+    before: sudo apt-get update && sudo apt-get install -y postgresql postgresql-contrib && sudo apt-get install -y Node.js && npm install -g npm@latest && npm install -g @angular/cli@13.1.0  
     command: sudo service postgresql start 
              sudo -u postgres createdb codechallenge
              sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD 'admin';"
