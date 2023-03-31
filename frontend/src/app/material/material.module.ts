@@ -12,6 +12,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatTabNav, MatTabsModule} from '@angular/material/tabs';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDatepickerModule} from '@angular/material/datepicker'
+
+ 
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
+
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [],
@@ -28,7 +36,12 @@ import {MatTabNav, MatTabsModule} from '@angular/material/tabs';
     MatMenuModule,
     MatSelectModule,
     MatSidenavModule,
-    MatTabsModule
+    MatTabsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatChipsModule
   ],
   exports: [
     MatGridListModule,
@@ -43,7 +56,12 @@ import {MatTabNav, MatTabsModule} from '@angular/material/tabs';
     MatMenuModule,
     MatSelectModule,
     MatSidenavModule,
-    MatTabsModule
+    MatTabsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatChipsModule
   ]
 })
 export class MaterialModule { }

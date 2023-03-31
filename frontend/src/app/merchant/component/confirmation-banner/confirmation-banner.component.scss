@@ -40,6 +40,9 @@
             top: 65%;
             left: 50%;
             transform: translate(-50%, -50%);    
+            @include respond(phone) {
+                top: 75%;
+            }
         }
           &__banner-text {
             text-align: center;

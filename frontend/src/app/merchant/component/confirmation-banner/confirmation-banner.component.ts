@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 declare let anime: any;
 export interface Tile {
@@ -6,15 +6,17 @@ export interface Tile {
   text: string;
   bannerText:string;
 }
-
 @Component({
-  selector: 'code-challenge-business-banner',
-  templateUrl: './business-banner.component.html',
-  styleUrls: ['./business-banner.component.scss']
+  selector: 'code-challenge-confirmation-banner',
+  templateUrl: './confirmation-banner.component.html',
+  styleUrls: ['./confirmation-banner.component.scss']
 })
-export class BusinessBannerComponent implements OnInit,AfterViewInit {
+export class ConfirmationBannerComponent implements OnInit {
+  successText = `Basket containing Tablets, Vitamins, 
+  Supplements will be delivered to Child Name 
+  living at Child Address on Date & Time`;
   basketCount = 100;
-  tiles: Tile = { text: 'order count', urls: 'assets/merchant/banner/count-banner.png',bannerText:''};
+  tiles: Tile = { text: 'order count', urls: 'assets/merchant/banner/confirmation-banner.png',bannerText:''};
   bpObserverSvcSub: Subscription;
   constructor() {
   }

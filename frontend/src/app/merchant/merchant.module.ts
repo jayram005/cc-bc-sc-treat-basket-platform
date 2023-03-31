@@ -14,9 +14,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { CodeChallengeCommonModule } from '../common/code-challenge-common.module';
 import { SolutionsBannerComponent } from './component/solutions-banner/solutions-banner.component';
-
+import { ConfirmationComponent } from './component/confirmation/confirmation.component';
+import { ConfirmationBannerComponent } from './component/confirmation-banner/confirmation-banner.component';
+import { MaterialModule } from '../material/material.module';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { CancelBannerComponent } from './component/cancel-banner/cancel-banner.component';
 @NgModule({
-  declarations: [MerchantComponent, EnqueryFormComponent, BusinessBannerComponent, SolutionsBannerComponent],
+  declarations: [MerchantComponent, EnqueryFormComponent, BusinessBannerComponent, SolutionsBannerComponent, ConfirmationComponent, ConfirmationBannerComponent, CancelBannerComponent],
   imports: [
     CommonModule,
     MerchantRoutingModule,
@@ -28,6 +32,8 @@ import { SolutionsBannerComponent } from './component/solutions-banner/solutions
     CodeChallengeCommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
+    NgxMaterialTimepickerModule
     // RecaptchaModule,
     // RecaptchaFormsModule
   ],

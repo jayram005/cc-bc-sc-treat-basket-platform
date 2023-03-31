@@ -1,25 +1,27 @@
-import { AfterViewInit, Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Subscription } from 'rxjs';
 declare let anime: any;
 export interface Tile {
   urls: string;
   text: string;
-  bannerText:string;
+  position: string;
 }
-
 @Component({
-  selector: 'code-challenge-business-banner',
-  templateUrl: './business-banner.component.html',
-  styleUrls: ['./business-banner.component.scss']
+  selector: 'code-challenge-confirmation',
+  templateUrl: './confirmation.component.html',
+  styleUrls: ['./confirmation.component.scss']
 })
-export class BusinessBannerComponent implements OnInit,AfterViewInit {
-  basketCount = 100;
-  tiles: Tile = { text: 'order count', urls: 'assets/merchant/banner/count-banner.png',bannerText:''};
+export class ConfirmationComponent implements OnInit {
+  tiles: Tile[] = [
+    { text: 'confirmation-banner-top', urls: 'assets/merchant/banner/confirmation-banner-right.png',position:'top' },
+    { text: 'confirmation-banner-basket', urls: 'assets/merchant/banner/treat-basket.png' ,position:'bottom'}
+  ];
   bpObserverSvcSub: Subscription;
   constructor() {
   }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
@@ -45,3 +47,4 @@ export class BusinessBannerComponent implements OnInit,AfterViewInit {
       });
   }
 }
+

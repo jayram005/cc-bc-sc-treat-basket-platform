@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 
 @Component({
   selector: 'code-challenge-merchant',
@@ -6,8 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./merchant.component.scss']
 })
 
-export class MerchantComponent {
-
+export class MerchantComponent implements OnInit{
+  showConfirmation = true;
+  displayError = true;
   constructor() {}
 
+  ngOnInit(){}
+  
+  isOrderPlaced(event: boolean){   
+     this.showConfirmation = event;
+  }
+
+  addMoreBtnHandler(){
+    this.showConfirmation = false;
+  }
 }

@@ -6,7 +6,7 @@
     overflow-x: hidden;
     padding: 0 1rem;
     &__container {
-        width: 70%;
+        width: 90%;
         margin: 0 auto 2rem 0;
         background: $color-white;
         border-radius: 1rem;
@@ -138,3 +138,54 @@
         }
     }
 }
+
+///////////////////////////////
+.mat-stepper-vertical {
+    margin-top: 8px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }
+
+  .last-stepper-content-container{
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .symptoms-chip-list{
+    width: 100%;
+  }
+
+  .radio-button-container{
+    border: 1px solid rgb(196, 196, 196);
+    width: 200px;
+    padding:5px;
+    border-radius: 5px;
+    margin-top: -20px;
+}
+
+.radio-button{
+    // margin: 10px;
+    margin-left: 10px;
+    margin-top: 5px;
+ }
+
+ .date-field{
+    width: 205px;
+ }
+
+ .stepper-submit-button{
+   // border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+ }
+
+ .chip-rows-container{
+    width: 470px;
+    margin: 0 auto;
+   // border: 1px solid red;
+ }

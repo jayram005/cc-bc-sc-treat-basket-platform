@@ -1,20 +1,23 @@
-import { AfterViewInit, Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 declare let anime: any;
 export interface Tile {
   urls: string;
   text: string;
-  bannerText:string;
 }
-
 @Component({
-  selector: 'code-challenge-business-banner',
-  templateUrl: './business-banner.component.html',
-  styleUrls: ['./business-banner.component.scss']
+  selector: 'code-challenge-cancel-banner',
+  templateUrl: './cancel-banner.component.html',
+  styleUrls: ['./cancel-banner.component.scss']
 })
-export class BusinessBannerComponent implements OnInit,AfterViewInit {
+export class CancelBannerComponent implements OnInit {
+
+  
+  successText = `Basket containing Tablets, Vitamins, 
+  Supplements will be delivered to Child Name 
+  living at Child Address on Date & Time`;
   basketCount = 100;
-  tiles: Tile = { text: 'order count', urls: 'assets/merchant/banner/count-banner.png',bannerText:''};
+  tiles: Tile = { text: 'order count', urls: 'assets/merchant/banner/cancel-banner.png'};
   bpObserverSvcSub: Subscription;
   constructor() {
   }

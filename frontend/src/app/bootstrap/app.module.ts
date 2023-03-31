@@ -8,6 +8,7 @@ import {CustomHttpModule} from '../http/custom-http.module';
 import { CodeChallengeCommonModule } from '../common/code-challenge-common.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from 'src/environments/environment';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 /**
  * Position all feature modules ahead of AppRouting Module.

@@ -1,12 +1,27 @@
 <code-challenge-header [searchVisible]=false></code-challenge-header>
-<code-challenge-solutions-banner class="code-challenge-solution-banner"></code-challenge-solutions-banner>    
+<code-challenge-solutions-banner *ngIf="!showConfirmation && !displayError" class="code-challenge-solution-banner"></code-challenge-solutions-banner>    
 <section class="code-challenge-merchant">
-    <div>
+    <div *ngIf="!showConfirmation" >
         <div class="code-challenge-merchant-layout_60">
             <code-challenge-business-banner></code-challenge-business-banner>
         </div>
         <div class="code-challenge-merchant-layout_40">
-            <code-challenge-enquery-form></code-challenge-enquery-form>
+            <code-challenge-enquery-form (isFormSubmit)="isOrderPlaced($event)"></code-challenge-enquery-form>
         </div>
     </div>
+    <div *ngIf="showConfirmation">
+        <div *ngIf="!displayError" class="code-challenge-merchant-layout_success_50">
+            <code-challenge-confirmation-banner></code-challenge-confirmation-banner>
+        </div>
+        <div *ngIf="!displayError" class="code-challenge-merchant-layout_success_40">
+            <code-challenge-confirmation></code-challenge-confirmation>
+        </div>      
+        <div *ngIf="displayError" class="code-challenge-merchant-layout_error">
+            <code-challenge-cancel-banner></code-challenge-cancel-banner>
+        </div>  
+    </div>
+    <div *ngIf="showConfirmation" class="code-challenge-merchant-layout_btn">
+        <button *ngIf="!displayError" mat-flat-button class="code-challenge-merchant-layout_btn-active_btn" (click)="addMoreBtnHandler()">Add More</button>
+        <button *ngIf="displayError" mat-flat-button class="code-challenge-merchant-layout_btn-cancel_btn" (click)="addMoreBtnHandler()">Go Back</button>
+    </div>    
 </section>

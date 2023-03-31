@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   demgenEndpoint: '',
+  BCEndpoint: 'http://localhost:4500',
   globalVarAuthID: 'authID',
   globalMcSession: 'mcSession'
 };

@@ -22,6 +22,7 @@
         margin: 0 auto;
         @include respond(phone){
             width: 90%;
+            padding: 0 1.6rem 3rem;
         }
     }
     &-logo {

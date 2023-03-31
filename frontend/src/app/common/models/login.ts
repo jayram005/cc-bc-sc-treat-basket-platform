@@ -7,3 +7,7 @@ export interface LoginResponse {
     token: string;
     expAt: number;
 }
+
+export interface URL {
+	endPoint:string;
+}

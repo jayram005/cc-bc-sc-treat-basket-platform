@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input,Output, OnDestroy,ViewChild,EventEmitter } from '@angular/core';
 import { trigger, transition, animate, style } from '@angular/animations';
 import { FormControl, FormGroup, FormBuilder, Validators  } from '@angular/forms';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
@@ -7,163 +7,310 @@ import { BusinessQueryForm, BusinessEnqueryRequest, BusinessEnqueryResponse } fr
 // import { AnalyticsService } from 'src/app/common/analytics/service/amplitude.service';
 // import { SalonService } from 'src/app/common/mediation/salon.services';
 
+/////////////////////
+
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material/chips';
+import * as moment from 'moment'
+import { MatStepper } from '@angular/material/stepper';
+import { ManageInfoService } from '../../services/modules/manage-info/manage-info.service';
+
+
+
+export interface Fruit {
+  name: string;
+}
+
 @Component({
   selector: 'code-challenge-enquery-form',
   templateUrl: './enquery-form.component.html',
   styleUrls: ['./enquery-form.component.scss'],
-  animations: [
-    trigger('onClickTechErr', [
-      transition(':leave', [
-        animate('1s', style({ opacity: 0 }))
-      ])
-    ]),
-    trigger('onClickInfoMsg', [
-      transition(':leave', [
-        animate('1s', style({ opacity: 0 }))
-      ])
-    ])
-  ]
+  
 })
 export class EnqueryFormComponent implements OnInit, OnDestroy {
 
-  isPhone: boolean;
-  @Input() techErrorMsg: boolean;
-  mName: FormControl;
-  fname: FormControl;
-  phoneNo: any;
-  email: FormControl;
-  businessType: FormControl;
-  emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]{2,4}$/;
-  namePattern = /^[a-zA-Z ]*$/;
-  urlPattern = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
-  merchantForm: FormGroup;
-  businesQueryData: BusinessQueryForm;
-  errorTitle: string;
-  errorSubtitle: string;
-  infoMsg: string;
-  bpObserverSvcSub: Subscription;
-  recaptchaReactive: FormControl;
-  businessAddress: FormControl;
-  businessUrl: FormControl;
+  isLinear = false;
+  childDetailsForm: FormGroup;
+  healthConditionForm: FormGroup;
+  ContactDeliveryForm: FormGroup;
+  illnessSelected: any;
+  @Output() isFormSubmit = new EventEmitter<boolean>();
+  relationWithChildData=[
+    {
+    relationName:'Father'
+  },
+  {
+    relationName:'Mother',
+  },
+  {
+    relationName:'Brother'
+  }
+  
+  ]
+
+  currentMedications = [
+    {
+    medication:'Dengue'
+  },
+  {
+    medication:'Cold',
+  },
+  {
+    medication:'other'
+  }
+  
+  ]
+
+  ////symptoms chips
+  addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  symmptoms = ['cough', 'fever'];
+  allergies = ['peanut', 'gluten'];
+  medications= ['data', 'data2'];
+  genders =['Female','Male','Other']
+  @ViewChild ('stepper') stepper: MatStepper;
+  today = new Date(); 
+
+   isPhone: boolean;
+  relationWithChildSelected: any;
+ 
+   bpObserverSvcSub: Subscription;
+  cols: number;
+  getTypesOfIllnessSubscription: Subscription;
+  typesOfIllnessList=[];
+  selectedGender: any;
+
+  // recaptchaReactive: FormControl;
+  // businessAddress: FormControl;
+  // businessUrl: FormControl;
 
   constructor(private fb: FormBuilder,
               private bpObserverSvc: BreakpointObserver,
               // private salonSvc: SalonService,
               // private amplitudeSvc: AnalyticsService
+              private manageInfoService: ManageInfoService
               ) {
     this.bpObserverSvcSub = bpObserverSvc
       .observe(['(min-width: 600px)'])
       .subscribe((state: BreakpointState) => {
         if (!state.matches) {
           this.isPhone = true;
+          this.cols =1
         } else {
           this.isPhone = false;
+          this.cols=2
         }
       });
   }
 
   ngOnInit(): void {
-    this.merchantForm = this.fb.group({
-      mName: new FormControl('', [Validators.required,
-        Validators.pattern(this.namePattern)
-      ]),
-      fname: new FormControl('', [Validators.required,
-      Validators.pattern(this.namePattern)
-      ]),
-      phoneNo: new FormControl('', [ Validators.required ]),
-      email: new FormControl('', [ Validators.required,
-        Validators.pattern(this.emailPattern)
-      ]),
-      businessType: new FormControl('', Validators.required),
-      recaptchaReactive: new FormControl(null, Validators.required),
-      businessAddress: new FormControl(''),
-      businessUrl: new FormControl('', Validators.pattern(this.urlPattern))
+    this.childDetailsForm = this.fb.group({
+      childName: ['', Validators.required],
+      weight: ['', Validators.required],
+      DOB:['',Validators.required],
+      gender: ['', Validators.required],
+      parentName: ['', Validators.required],
+      relationWithChild: ['', Validators.required],
     });
+    this.healthConditionForm = this.fb.group({
+      typeOfIllness: ['', Validators.required],
+      symptoms: ['', Validators.required],
+      illnessSince: ['', Validators.required],
+      allergies: ['', Validators.required],
+      currentMedication: ['', Validators.required],
+    });
+    this.ContactDeliveryForm = this.fb.group({
+      phoneNumber: ['', Validators.required],
+      email: ['', Validators.required],
+      deliveryAddress: ['', Validators.required],
+      deliveryDate: ['', Validators.required],
+      DeliveryTime: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      postcode: ['', Validators.required],
+    });
+    /////////////////////////////////////
+
+      this.getTypesOfIllness()
   }
 
-  public hasError = (controlName: string, errorName: string) => {
-    return this.merchantForm.controls[controlName].hasError(errorName);
+  getTypesOfIllness(){
+    this.getTypesOfIllnessSubscription = this.manageInfoService
+            .getTypeOfIllness()
+            .subscribe({
+              next: (response) => {
+                console.log("get types of illness response: ", response)
+                this.typesOfIllnessList = response;
+              },
+              error: (error) => {
+                 console.log('Error=> : ', error);
+                
+              },
+            });
   }
 
-  onClickTechErr() {
-    this.techErrorMsg = false;
+  public hasError = (
+    formGroupName: FormGroup,
+    controlName: string,
+    errorName: string,
+  ) => {
+    return formGroupName.controls[controlName].hasError(errorName);
+  };
+
+  submitChildDetails(){
+    console.log(this.childDetailsForm.value)
+    this.stepper.next();
   }
 
-  onClickInfoMsg() {
-    this.infoMsg = null;
+  healthConditionSubmit(){
+    console.log(this.healthConditionForm.value)
+    this.stepper.selected.completed = true;
+    this.stepper.next();
   }
 
-  onSubmit() {
-  //   this.businesQueryData = this.merchantForm.value;
-  //   this.businesQueryData.phoneNo = this.businesQueryData.phoneNo.match(/\d/g).join('');
+  submitInformation(){
+    //////
+    //converting MatDate to Readable date
+    const childDOBmomentDate = new Date(this.childDetailsForm.value.DOB); 
+    const ChildDOBformattedDate = moment(childDOBmomentDate).format("YYYY/MM/DD");
+    console.log(ChildDOBformattedDate);
+    /////
+    const illnessSincemomentDate = new Date(this.healthConditionForm.value.illnessSince); 
+    const illnessSincemomentDateformattedDate = moment(illnessSincemomentDate).format("YYYY/MM/DD");
+    console.log(illnessSincemomentDateformattedDate);
+    /////
+    const deliveryDatemomentDate = new Date(this.ContactDeliveryForm.value.deliveryDate); 
+    const deliveryDateformattedDate = moment(deliveryDatemomentDate).format("YYYY/MM/DD");
+    console.log(deliveryDateformattedDate);
 
-  //   if (this.businesQueryData) {
-  //     let payload = {} as BusinessEnqueryRequest;
-  //     let response: BusinessEnqueryResponse;
-  //     payload.merchantName = this.businesQueryData.mName;
-  //     payload.contactName = this.businesQueryData.fname;
-  //     payload.contactPhone = this.businesQueryData.phoneNo;
-  //     payload.contactEmail = this.businesQueryData.email;
-  //     payload.typeOfBusiness = this.businesQueryData.businessType;
-  //     payload.businessUrl = this.businesQueryData.businessUrl;
-  //     payload.businessAddress = this.businesQueryData.businessAddress;
-  //     payload.source = 'opensalon';
 
-  //     this.amplitudeSvc.addEventToAnalytics({
-  //       eventName: 'list_business_submit_tap',
-  //       data: { merchantName: payload.merchantName}
-  //     });
-  //     let result = this.salonSvc.createBusinessEnquiry(payload).toPromise();
-  //     result.then(apiResponse => {
-  //       response = apiResponse;
-  //       if (response.id && response.id > 0) {
-  //         this.infoMsg = 'Thank you for getting in touch. One of our executives will get back in touch with you soon!';
-  //         this.amplitudeSvc.addEventToAnalytics({
-  //           eventName: 'list_business_submit_success',
-  //           data: { merchantName: payload.merchantName}
-  //         });
-  //         this.hideSucessMsg();
-  //       } else {
-  //         this.infoMsg = 'We appreciate you contacting us. One of our executives will get back in touch with you soon!';
-  //         this.hideSucessMsg();
-  //       }
-  //       this.merchantForm.reset();
-  //     })
-  //     .catch((err) => {
-  //       this.displayErrorMessage(400);
-  //       this.amplitudeSvc.addEventToAnalytics({
-  //         eventName: 'list_business_submit_error',
-  //         data: { merchantName: payload.merchantName}
-  //       });
-  //       console.log(err);
-  //     });
-  //   } else {
-  //     this.displayErrorMessage(1000);
-  //   }
-  // }
+   //////
+    const infoReqBody ={
+      name: this.childDetailsForm.value.childName,
+      gender: this.selectedGender,
+      weight: this.childDetailsForm.value.weight,
+      dateOfBirth: ChildDOBformattedDate,
+      guardianName: this.childDetailsForm.value.parentName,
+      relation: this.relationWithChildSelected,
+      typeOfIllness: this.illnessSelected,
+      illnessSince: illnessSincemomentDateformattedDate,
+      symptoms: this.symmptoms,
+      allergies: this.allergies,
+      medication: this.medications,
+      phoneNo: this.ContactDeliveryForm.value.phoneNumber,
+      email: this.ContactDeliveryForm.value.email,
+      delivery_address: this.ContactDeliveryForm.value.deliveryAddress,
+      deivery_date: deliveryDateformattedDate,
+      latitude: "0",
+      logitude: "0",
+      city: this.ContactDeliveryForm.value.city,
+      state: this.ContactDeliveryForm.value.state,
+      postCode: this.ContactDeliveryForm.value.postcode
+    }
 
-  // displayErrorMessage(code: number) {
-  //   this.techErrorMsg = true;
-  //   if (code === 1000) {
-  //     this.errorTitle = 'Please enter all the required information.';
-  //     this.errorSubtitle = 'OK';
-  //   } else {
-  //     this.errorTitle = 'There was an error with this request.';
-  //     this.errorSubtitle = 'TRY AGAIN LATER';
-  //   }
-  //   setTimeout (() => {
-  //     this.techErrorMsg = false;
-  //   }, 2000);
+    console.log("Req body: ",infoReqBody);
+    //TO DO api integration
+    this.isFormSubmit.emit(true);
   }
 
-  hideSucessMsg() {
-    this.techErrorMsg = false;
-    setTimeout (() => {
-      this.infoMsg = null;
-    }, 5000);
+
+  onRelationWithChildChange(event){
+    console.log("onRelationWithChildChange: ", event)
+    this.relationWithChildSelected = event.value;
   }
+
+  onTypeOfIllnessChange(event){
+    console.log("onTypeOfIllnessChange: ", event)
+    this.illnessSelected = event.value;
+  }
+
+  onCurrentMedicationChange(event){
+    console.log("onCurrentMedicationChange: ", event)
+  }
+
+  onGenderChange(event){
+    console.log("on gender change: ", event)
+    this.selectedGender = event.value;
+  }
+
+  resetChildDetails(){
+    this.childDetailsForm.reset()
+  }
+
+  resetHealthDetailsDetails(){
+    this.healthConditionForm.reset()
+  }
+
+  resetContantDetails(){
+    this.ContactDeliveryForm.reset()
+  }
+
+//////chips
+addSymptom(event: MatChipInputEvent): void {
+  const value = (event.value || '').trim();
+
+  // Add our fruit
+  if (value) {
+    this.symmptoms.push(value);
+  }
+
+  // Clear the input value
+  event.chipInput!.clear();
+}
+
+addAllergy(event: MatChipInputEvent): void {
+  const value = (event.value || '').trim();
+
+  // Add our fruit
+  if (value) {
+    this.allergies.push(value);
+  }
+
+  // Clear the input value
+  event.chipInput!.clear();
+}
+
+addMedication(event: MatChipInputEvent): void {
+  const value = (event.value || '').trim();
+
+  // Add our fruit
+  if (value) {
+    this.medications.push(value);
+  }
+
+  // Clear the input value
+  event.chipInput!.clear();
+}
+
+
+
+removeSymptom(symmptom): void {
+  const index = this.symmptoms.indexOf(symmptom);
+
+  if (index >= 0) {
+    this.symmptoms.splice(index, 1);
+  }
+}
+
+removeAllergy(allergy): void {
+  const index = this.allergies.indexOf(allergy);
+
+  if (index >= 0) {
+    this.allergies.splice(index, 1);
+  }
+}
+
+removeMedication(medication): void {
+  const index = this.medications.indexOf(medication);
+
+  if (index >= 0) {
+    this.medications.splice(index, 1);
+  }
+}
 
   ngOnDestroy() {
-    if (this.bpObserverSvcSub) { this.bpObserverSvcSub.unsubscribe(); }
+    if (this.getTypesOfIllnessSubscription) {
+      this.getTypesOfIllnessSubscription.unsubscribe();
+    }
   }
 }

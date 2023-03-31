@@ -1,8 +1,12 @@
 <div class="code-challenge-bb-container">
-    <mat-grid-list cols=2 rowHeight="20rem" gutterSize="3rem" >
-        <mat-grid-tile *ngFor="let tile of tiles">
-            <img loading="lazy" width="100%" src="{{tile.urls}}" alt="{{tile.text}}">
-        </mat-grid-tile>
+    <mat-grid-list cols=1  gutterSize="3rem" >
+        <div class="banner-container">
+            <img src="{{tiles.urls}}" alt="{{tiles.text}}" style="width: 70%;">
+            <div class="banner-container__count-centered  text-animation">{{basketCount}}</div>
+        </div> 
+        <div>
+            <div class="banner-container__banner-text">Happy Treats Delivered</div>
+        </div>       
     </mat-grid-list>
 </div>
 
