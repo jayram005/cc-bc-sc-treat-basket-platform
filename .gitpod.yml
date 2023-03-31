@@ -2,20 +2,15 @@ image: gitpod/workspace-full
 
 # prebuild the workspace to speed up development
 tasks:
-  - name: Terminal 1
-    init: sudo apt-get update && sudo apt-get install -y postgresql postgresql-contrib
-          sudo service postgresql start
-          sudo -u postgres createdb codechallenge
-          sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD 'admin';"
-          sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO postgres;"
-
-  - name: Terminal 2
-    init: sudo apt-get update && sudo apt-get install -y Node.js
-    command: cd backend && npm install && node index.js 
-
-  - name: Terminal 3
-    init: sudo apt-get update 
-    command: npm install -g @angular/cli@13.1.0 && cd ../frontend && npm install && ng serve --host 0.0.0.0 --disable-host-check 
+  - name: Terminal 
+    before: sudo apt-get update && sudo apt-get install -y postgresql postgresql-contrib && sudo apt-get install -y Node.js && npm install -g @angular/cli@13.1.0  
+    command: sudo service postgresql start 
+             sudo -u postgres createdb codechallenge
+             sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD 'admin';"
+             sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO postgres;"
+             cd backend 
+             npm install && node index.js 
+             cd ../frontend && npm install && ng serve --host 0.0.0.0 --disable-host-check 
       
 
 ports:
