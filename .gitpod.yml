@@ -8,6 +8,7 @@ tasks:
     init: |
          sudo service postgresql start
          sudo sed -i "s/local\s\+all\s\+postgres\s\+peer/local\tall\t\tpostgres\t\t\t\ttrust/" /etc/postgresql/12/main/pg_hba.conf
+         sudo service postgresql restart
          sudo psql -U postgres -c "CREATE DATABASE codechallenge;" 
          sudo psql -U postgres -c "CREATE USER treatuser WITH PASSWORD 'admin';" 
          sudo psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO treatuser;"
