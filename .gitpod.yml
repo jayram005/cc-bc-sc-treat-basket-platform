@@ -2,30 +2,22 @@ image: gitpod/workspace-full
 
 # prebuild the workspace to speed up development
 tasks:
-  - init: |
-      sudo apt-get update && sudo apt-get install -y postgresql postgresql-contrib && sudo apt-get install -y Node.js
-      # Start Postgres and create a new database and user
-      sudo service postgresql start
-      sudo -u postgres createdb codechallenge
-      sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD 'admin';"
-      sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO postgres;"
-      npm install -g @angular/cli@13.1.0
-      # Install dependencies for frontend and backend
-      cd backend
-      npm install
-      cd ../frontend
-      npm install
-      ng build
+  - name: Terminal 1
+    init: sudo apt-get update && sudo apt-get install -y postgresql postgresql-contrib
+          sudo service postgresql start
+          sudo -u postgres createdb codechallenge
+          sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD 'admin';"
+          sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO postgres;"
 
-  - command: |
-      cd backend
-      node index.js
-      # Start the frontend server
-      cd ../frontend
-      ng serve --host 0.0.0.0 --disable-host-check 
+  - name: Terminal 2
+    init: sudo apt-get update && sudo apt-get install -y Node.js
+    command: cd backend && npm install && node index.js 
+
+  - name: Terminal 3
+    init: sudo apt-get update 
+    command: npm install -g @angular/cli@13.1.0 && cd ../frontend && npm install && ng serve --host 0.0.0.0 --disable-host-check 
       
-# start the backend server and the frontend app
-# then open the app in a new browser tab
+
 ports:
   - port: 4500
     onOpen: ignore
