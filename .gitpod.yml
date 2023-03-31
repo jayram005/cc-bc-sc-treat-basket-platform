@@ -7,6 +7,7 @@ tasks:
   - name: Run Backend App 
     init: |
          sudo service postgresql start
+         sudo sed -i 's/md5/trust/' /etc/postgresql/12/main/pg_hba.conf
          sudo psql -U postgres -c "CREATE DATABASE codechallenge;" 
          sudo psql -U postgres -c "CREATE USER treatuser WITH PASSWORD 'admin';" 
          sudo psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO treatuser;"
