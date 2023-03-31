@@ -13,8 +13,11 @@ tasks:
          sudo psql -U postgres -c "CREATE DATABASE codechallenge;" 
          sudo psql -U postgres -c "CREATE USER treatuser WITH PASSWORD 'admin';" 
          sudo psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO treatuser;"
-         cd backend && npm install
-    command: node index.js
+         cd backend && npm install && npm install -g sequelize-cli
+    command: |
+         sequelize db:migrate
+         npx sequelize-cli db:seed:all
+         node index.js
   - name: Run Frontend App 
     init: cd frontend && npm install && npm install -g @angular/cli@13.1.0
     command: npm run start-local 
