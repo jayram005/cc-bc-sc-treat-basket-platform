@@ -1,0 +1,60 @@
+@import "../../../../styles/sass/abstracts/variables.scss";
+@import "../../../../styles/sass/abstracts/mixins/mediaquerymanager.scss";
+
+.code-challenge-bb-container {
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 7.5%;
+
+    @include respond(phone) {
+        padding: 0;
+        margin-bottom: 3rem;
+        margin-left: 0;
+    }
+    &-slick {
+        overflow-x: hidden;
+        &__img {
+            width: 10rem;
+        }
+    }
+
+    .text-animation {
+        font-weight: 900;
+        font-size: 7rem;
+        color: $code-challenge-brand-blue-dark;
+        @include respond(phone) {
+            font-weight: 600;
+            font-size: 5rem;
+        }
+    }
+    .text-animation .letter {
+        display: inline-block;
+        line-height: 1em;
+        color: $code-challenge-brand-blue-dark;
+    }
+    .banner-container {
+        position: relative;
+        text-align: center;
+        &__count-centered {
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);    
+            @include respond(phone) {
+                top: 75%;
+            }
+        }
+          &__banner-text {
+            text-align: center;
+            font-size: 4rem;
+            line-height: 50px;
+            color: $code-challenge-brand-blue-dark;
+            @include respond(phone) {
+                font-weight: 600;
+                font-size: 3rem;
+            }
+          }
+      }
+    
+}
+

@@ -12,6 +12,5 @@ export class WhiteSpaceTrimPipe implements PipeTransform {
 
     transform(trimText: string, args?: any): string {
         return trimText.replace(/ /g, '');
-      }
-
+    }
 }

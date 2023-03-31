@@ -1,0 +1,57 @@
+@import "../../../../styles/sass/abstracts/variables.scss";
+@import "../../../../styles/sass/abstracts/mixins/mediaquerymanager.scss";
+
+.code-challenge-bb-container {
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+
+    @include respond(phone) {
+        padding: 0;
+        margin-bottom: 3rem;
+        margin-left: 0;
+    }
+
+    &-slick {
+        overflow-x: hidden;
+        &__img {
+            width: 10rem;
+        }
+    }
+
+    .banner-container {
+        position: relative;
+        text-align: center;
+        &__count-centered {
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            @include respond(phone) {
+                top: 75%;
+            }
+        }
+
+        &__banner-text {
+            text-align: center;
+            font-size: 4rem;
+            line-height: 50px;
+            font-weight: 900;
+            color: $color-red;
+            @include respond(phone) {
+                font-weight: 600;
+                font-size: 3rem;
+            }
+        }
+
+        &__banner-description {
+            text-align: center;
+            font-size: 3rem;
+            line-height: 50px;
+            color: $code-challenge-brand-blue-dark;
+            @include respond(phone) {
+                font-weight: 600;
+                font-size: 3rem;
+            }
+        }
+    }
+}

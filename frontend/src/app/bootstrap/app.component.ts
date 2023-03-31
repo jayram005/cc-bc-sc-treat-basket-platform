@@ -6,13 +6,13 @@ import { SwUpdate } from '@angular/service-worker';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent  implements OnInit {
+export class AppComponent implements OnInit {
 
-  constructor(private swUpdate: SwUpdate) {}
+  constructor(private swUpdate: SwUpdate) { }
 
   ngOnInit() {
-     // added this code to checkForUpdate and reload if new build version pushed
-     if (this.swUpdate.isEnabled) {
+    // added this code to checkForUpdate and reload if new build version pushed
+    if (this.swUpdate.isEnabled) {
       this.swUpdate.versionUpdates.subscribe(() => {
         this.swUpdate.checkForUpdate().then(() => {
           window.location.reload();

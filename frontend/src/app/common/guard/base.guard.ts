@@ -29,6 +29,6 @@ export abstract class BaseGuard implements CanActivate {
     }
 
     private navigateToHome() {
-        this.router.navigate(['/home'], {queryParamsHandling: 'merge'});
+        this.router.navigate(['/treat-basket'], {queryParamsHandling: 'merge'});
     }
 }

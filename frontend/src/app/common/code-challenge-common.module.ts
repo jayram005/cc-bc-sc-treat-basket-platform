@@ -10,32 +10,26 @@ import { AddressTitleCasePipe } from './pipe/addressTitleCase.pipe';
 import { FormatPhoneDirective } from './directives/formatPhone.directive';
 import { RouterModule } from '@angular/router';
 import { DigitOnlyDirective } from './directives/digitsOnly.directive';
-import { CookiesService } from './services/cookies.service';
-import { LocalStorageService } from './services/localStorage.service';
-import { AlertComponent } from './components/alert/alert.component';
-import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MaterialModule } from '../material/material.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { ConfirmDialogService } from './services/confirm-dialog.service';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [ WhiteSpaceTrimPipe, SpinnerComponent,
-     FormatTimePipe, SubSpinnerComponent, AddressTitleCasePipe,
-     FormatPhoneDirective,DigitOnlyDirective,
-     ConfirmDialogComponent,
-     AlertComponent, FooterComponent, HeaderComponent],
+  declarations: [WhiteSpaceTrimPipe, SpinnerComponent,
+    FormatTimePipe, SubSpinnerComponent, AddressTitleCasePipe,
+    FormatPhoneDirective, DigitOnlyDirective,
+    FooterComponent, HeaderComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
-    MaterialModule,    
+    MaterialModule,
     RouterModule,
     MatToolbarModule,
     MatIconModule,
-    MatDialogModule 
+    MatDialogModule
   ],
   exports: [
     CommonModule,
@@ -43,16 +37,13 @@ import { HeaderComponent } from './header/header.component';
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    ConfirmDialogComponent,
     AddressTitleCasePipe,
     FormatPhoneDirective,
     DigitOnlyDirective,
     WhiteSpaceTrimPipe, SpinnerComponent,
     FormatTimePipe, SubSpinnerComponent,
-    AlertComponent, FooterComponent, HeaderComponent
+    FooterComponent, HeaderComponent
   ],
-  providers: [SpinnerService, AddressTitleCasePipe,
-    CookiesService, LocalStorageService,ConfirmDialogService ]
+  providers: [SpinnerService, AddressTitleCasePipe]
 })
-export class CodeChallengeCommonModule {}
-
+export class CodeChallengeCommonModule { }

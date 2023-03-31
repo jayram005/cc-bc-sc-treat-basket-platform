@@ -1,0 +1,32 @@
+<code-challenge-header [searchVisible]=false></code-challenge-header>
+<code-challenge-banner-description *ngIf="displayDescription"></code-challenge-banner-description>    
+<section class="code-challenge-home">
+    <div *ngIf="displayDescription" >
+        <div class="code-challenge-home-layout_60">
+            <code-challenge-home-banner></code-challenge-home-banner>
+        </div>
+        <div class="code-challenge-home-layout_40">
+            <code-challenge-treat-form (isFormSubmit)="isOrderPlaced($event)"></code-challenge-treat-form>
+        </div>
+    </div>
+    <div *ngIf="showConfirmation">
+        <div class="code-challenge-home-layout_success_50">
+            <code-challenge-confirmation-banner></code-challenge-confirmation-banner>
+        </div>
+        <div class="code-challenge-home-layout_success_40">
+            <code-challenge-confirmation></code-challenge-confirmation>
+        </div>
+    </div>
+    <div *ngIf="displayError" class="code-challenge-home-layout_error">
+        <code-challenge-cancel-banner></code-challenge-cancel-banner>
+    </div>  
+    <div *ngIf="!displayDescription" class="code-challenge-home-layout_btn">
+        <button
+            mat-flat-button 
+            [ngClass]="{
+                'code-challenge-home-layout_btn-active_btn': !displayError,
+                'code-challenge-home-layout_btn-cancel_btn': displayError}"
+            (click)="addMoreBtnHandler()">Go Back
+        </button>        
+    </div>    
+</section>

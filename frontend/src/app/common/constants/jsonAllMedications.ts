@@ -1,0 +1,1 @@
+export const allMedications=['dddd','gggg','fsfs']

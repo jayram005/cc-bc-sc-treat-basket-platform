@@ -1,0 +1,1 @@
+export const  allSymptoms = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry']

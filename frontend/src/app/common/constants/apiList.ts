@@ -1,8 +1,3 @@
-export const urls ={
-    "login" : 'login',
-    getTypeOfIllness:()=>{
-        return {
-          endPoint: `illness`,
-        };
-      }
+export const urls = {
+  getTypeOfIllness: () =>  {return {endPoint: `illness`}},
 }

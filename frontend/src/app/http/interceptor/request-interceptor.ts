@@ -3,8 +3,6 @@ import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse} from
 import { catchError, tap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { SpinnerService } from '../../common/spinner/service/spinner.service';
-import { LocalStorageService } from 'src/app/common/services/localStorage.service';
-
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
   private count = 0;

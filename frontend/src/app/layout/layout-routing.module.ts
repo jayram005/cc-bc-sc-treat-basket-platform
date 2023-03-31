@@ -5,9 +5,9 @@ import { LayoutComponent } from './component/layout.component';
 const routes: Routes = [{
   path: '',
   component: LayoutComponent,
-  children: [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', loadChildren: () => import('../modules/home/home.module').then(m => m.HomeModule) },
+  children:[
+    { path: 'treat-basket', loadChildren: () => import('../treat-basket/bc-home.module').then(m => m.BcHomeModule) },
+    { path:'', redirectTo:'treat-basket', pathMatch:'full'}
   ]
 }];
 

@@ -1,0 +1,8 @@
+<div class="code-challenge-bb-container">
+    <mat-grid-list cols=1 gutterSize="3rem">
+        <div class="banner-container" *ngFor="let tile of tiles">
+            <img src="{{tile.urls}}" alt="{{tile.text}}" [ngClass]="{'img-60': tile.position === 'top',
+                            'img-30': tile.position === 'bottom'}">
+        </div>
+    </mat-grid-list>
+</div>

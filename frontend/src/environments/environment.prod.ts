@@ -1,7 +1,6 @@
 export const environment = {
   production: true,
-  demgenEndpoint: 'https://api.livedomain.com/api',
+  BCEndpoint: 'http://localhost:4500',
   globalVarAuthID: 'authID',
   globalMcSession: 'mcSession'
 };
-
