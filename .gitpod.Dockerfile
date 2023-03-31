@@ -14,9 +14,6 @@ RUN /bin/bash -c "source $HOME/.nvm/nvm.sh && nvm install 16.19.1 && nvm use 16.
 ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=admin
 
-# Create a new database called 'mydb'
-RUN sudo PGPASSWORD=admin createdb -U postgres codechallenge
-
 # Expose the PostgreSQL port
 EXPOSE 5432
 
