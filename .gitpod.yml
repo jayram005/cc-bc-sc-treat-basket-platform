@@ -1,4 +1,6 @@
-image: node:16.19.1
+image:
+  file: .gitpod.Dockerfile
+  
 # prebuild the workspace to speed up development
 
 tasks:
