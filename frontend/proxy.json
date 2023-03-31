@@ -1,6 +1,6 @@
 {
-  "/code-challenge/*": {
-    "target": "https://api.devdomain.com/api",
+  "/illness": {
+    "target": "http://localhost:4500",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

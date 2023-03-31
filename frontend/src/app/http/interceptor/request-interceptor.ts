@@ -16,6 +16,9 @@ export class RequestInterceptor implements HttpInterceptor {
     if (this.count === 1) {
       this.spinnerService.show(this.spinType);
     }
+    req = req.clone({
+      headers: req.headers.set('Content-Type', 'application/json')
+    });
     const handleObs: Observable<HttpEvent<any>> = next.handle(req);
     return handleObs
       .pipe(

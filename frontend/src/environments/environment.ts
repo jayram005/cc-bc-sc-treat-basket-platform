@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BCEndpoint: 'http://localhost:4500',
+  BCEndpoint: '',
   globalVarAuthID: 'authID',
   globalMcSession: 'mcSession'
 };
