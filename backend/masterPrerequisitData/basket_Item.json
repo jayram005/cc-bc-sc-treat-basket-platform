@@ -1,0 +1,249 @@
+[
+    {
+      "item_id": 1,
+      "item_name": "Blankets",
+      "item_description": "A blanket is a swath of soft cloth large enough either to cover or to enfold most of the user's body and thick enough to keep the body warm.",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 2,
+      "item_name": "Coloring books",
+      "item_description": "A coloring book is a type of book containing line art to which people are intended to add color using crayons, colored pencils.",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 3,
+      "item_name": "Stuffed Animal",
+      "item_description": "A stuffed toy is a toy doll with an outer fabric sewn from a textile and stuffed with flexible material.",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 4,
+      "item_name": "Kids Puzzles",
+      "item_description": "Puzzles can help children develop their cognitive skills",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 5,
+      "item_name": "Sanitizer",
+      "item_description": "Hand sanitizers are products that typically come in a spray or a gel that, when applied to your hands as directed, can reduce the number of potentially disease-causing germs on your hands.",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 6,
+      "item_name": "Aromatherapy diffuser",
+      "item_description": "Put simply, essential oil diffusers work by emitting essential oils into the air.",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 7,
+      "item_name": "Air purifier",
+      "item_description": "An air purifier or air cleaner is a device which removes contaminants from the air in a room to improve indoor air quality.",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 8,
+      "item_name": "Pillows",
+      "item_description": "A pillow is a support of the body at rest for comfort, therapy, or decoration.",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 9,
+      "item_name": "Portable nebulizer",
+      "item_description": "A nebulizer is a small machine that turns liquid medicine into a mist that can be easily inhaled.",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 10,
+      "item_name": "Humidifier",
+      "item_description": "A humidifier is a device, primarily an electrical appliance, that increases humidity",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 11,
+      "item_name": "Socks",
+      "item_description": "A sock is worn on the foot and is almost always made of cloth, such as cotton or wool.",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 12,
+      "item_name": "Itch relief lotion",
+      "item_description": "To relieve pain and soothe the itching associated with eczema, dry skin, minor skin irritations, insect bites and, a fast-acting, long-lasting itch relief cream can help.",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 13,
+      "item_name": "Diaper rash cream",
+      "item_description": "Diaper Rash Cream. These creams prevent diaper rashes using the barrier method.",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 14,
+      "item_name": "Soothing creams",
+      "item_description": "A natural facial cream for dry and sensitive skin that leaves the skin with a velvety feel.",
+      "age_group": "0-5"
+    },
+    {
+      "item_id": 15,
+      "item_name": "Puzzle Books",
+      "item_description": "A nebulizer is a small machine that turns liquid medicine into a mist that can be easily inhaled.",
+      "age_group": "6-10"
+    },
+    {
+      "item_id": 16,
+      "item_name": "Board games",
+      "item_description": "A humidifier is a device, primarily an electrical appliance, that increases humidity",
+      "age_group": "6-10"
+    },
+    {
+      "item_id": 17,
+      "item_name": "Snacks",
+      "item_description": "A sock is worn on the foot and is almost always made of cloth, such as cotton or wool.",
+      "age_group": "6-10"
+    },
+    {
+      "item_id": 18,
+      "item_name": "Asthma-friendly snacks",
+      "item_description": "To relieve pain and soothe the itching associated with eczema, dry skin, minor skin irritations, insect bites and, a fast-acting, long-lasting itch relief cream can help.",
+      "age_group": "6-10"
+    },
+    {
+      "item_id": 19,
+      "item_name": "Fun inhaler accessories",
+      "item_description": "Diaper Rash Cream. These creams prevent diaper rashes using the barrier method.",
+      "age_group": "6-10"
+    },
+    {
+      "item_id": 20,
+      "item_name": "Anti-itch cream",
+      "item_description": "A natural facial cream for dry and sensitive skin that leaves the skin with a velvety feel.",
+      "age_group": "6-10"
+    },
+	{
+      "item_id": 21,
+      "item_name": "Story books",
+      "item_description": "To relieve pain and soothe the itching associated with eczema, dry skin, minor skin irritations, insect bites and, a fast-acting, long-lasting itch relief cream can help.",
+      "age_group": "6-10"
+    },
+    {
+      "item_id": 22,
+      "item_name": "Puzzle toys",
+      "item_description": "Diaper Rash Cream. These creams prevent diaper rashes using the barrier method.",
+      "age_group": "6-10"
+    },
+    {
+      "item_id": 23,
+      "item_name": "Moisturizing lotion",
+      "item_description": "A natural facial cream for dry and sensitive skin that leaves the skin with a velvety feel.",
+      "age_group": "6-10"
+    },
+	{
+      "item_id": 24,
+      "item_name": "Asthma-friendly snacks",
+      "item_description": "To relieve pain and soothe the itching associated with eczema, dry skin, minor skin irritations, insect bites and, a fast-acting, long-lasting itch relief cream can help.",
+      "age_group": "11-16"
+    },
+    {
+      "item_id": 25,
+      "item_name": "Face Mask",
+      "item_description": "Diaper Rash Cream. These creams prevent diaper rashes using the barrier method.",
+      "age_group": "11-16"
+    },
+    {
+      "item_id": 26,
+      "item_name": "Gift cards",
+      "item_description": "A natural facial cream for dry and sensitive skin that leaves the skin with a velvety feel.",
+      "age_group": "11-16"
+    },
+	{
+      "item_id": 27,
+      "item_name": "Tissues",
+      "item_description": "To relieve pain and soothe the itching associated with eczema, dry skin, minor skin irritations, insect bites and, a fast-acting, long-lasting itch relief cream can help.",
+      "age_group": "11-16"
+    },
+    {
+      "item_id": 28,
+      "item_name": "Portable inhaler",
+      "item_description": "Diaper Rash Cream. These creams prevent diaper rashes using the barrier method.",
+      "age_group": "11-16"
+    },
+    {
+      "item_id": 29,
+      "item_name": "Bath additives ",
+      "item_description": "A natural facial cream for dry and sensitive skin that leaves the skin with a velvety feel.",
+      "age_group": "11-16"
+    },
+	
+	{
+      "item_id": 30,
+      "item_name": "Coloring books",
+      "item_description": "A coloring book is a type of book containing line art to which people are intended to add color using crayons, colored pencils.",
+      "age_group": "6-10"
+    },
+	{
+      "item_id": 31,
+      "item_name": "Coloring books",
+      "item_description": "A coloring book is a type of book containing line art to which people are intended to add color using crayons, colored pencils.",
+      "age_group": "11-16"
+    },
+    {
+      "item_id": 32,
+      "item_name": "Stuffed Animal",
+      "item_description": "A stuffed toy is a toy doll with an outer fabric sewn from a textile and stuffed with flexible material.",
+      "age_group": "6-10"
+    },
+    {
+      "item_id": 33,
+      "item_name": "Sanitizer",
+      "item_description": "Hand sanitizers are products that typically come in a spray or a gel that, when applied to your hands as directed, can reduce the number of potentially disease-causing germs on your hands.",
+      "age_group": "6-10"
+    },
+    {
+      "item_id": 34,
+      "item_name": "Sanitizer",
+      "item_description": "Hand sanitizers are products that typically come in a spray or a gel that, when applied to your hands as directed, can reduce the number of potentially disease-causing germs on your hands.",
+      "age_group": "11-16"
+    },
+	{
+      "item_id": 35,
+      "item_name": "Aromatherapy diffuser",
+      "item_description": "Put simply, essential oil diffusers work by emitting essential oils into the air.",
+      "age_group": "6-10"
+    },
+	{
+      "item_id": 36,
+      "item_name": "Aromatherapy diffuser",
+      "item_description": "Put simply, essential oil diffusers work by emitting essential oils into the air.",
+      "age_group": "11-16"
+    },
+	{
+      "item_id": 37,
+      "item_name": "Air purifier",
+      "item_description": "An air purifier or air cleaner is a device which removes contaminants from the air in a room to improve indoor air quality.",
+      "age_group": "6-10"
+    },
+	{
+      "item_id": 38,
+      "item_name": "Air purifier",
+      "item_description": "An air purifier or air cleaner is a device which removes contaminants from the air in a room to improve indoor air quality.",
+      "age_group": "11-16"
+    },
+    {
+      "item_id": 39,
+      "item_name": "Pillows",
+      "item_description": "A pillow is a support of the body at rest for comfort, therapy, or decoration.",
+      "age_group": "6-10"
+    },
+    {
+      "item_id": 40,
+      "item_name": "Pillows",
+      "item_description": "A pillow is a support of the body at rest for comfort, therapy, or decoration.",
+      "age_group": "11-16"
+    },
+    {
+      "item_id": 41,
+      "item_name": "Board games",
+      "item_description": "A humidifier is a device, primarily an electrical appliance, that increases humidity",
+      "age_group": "11-16"
+    }
+  ]

@@ -53,7 +53,7 @@ const addNewOrder = async function addNewOrder(body, res) {
 
 		const ageGroup = checkNumberRange(age);
 		const basketItemsData = await basketItems.getBasketItems(illnessId.id, ageGroup);
-
+		console.log(JSON.stringify(basketItemsData));
 		if(basketItemsData.length === 0){
 			const errorMsg = "Illness doesn't elegible for Treat Basket";
 			throw res.status(400).json({ status: 400, type: "error", message: errorMsg });
@@ -68,7 +68,7 @@ const addNewOrder = async function addNewOrder(body, res) {
 				allbasketItems.push({order_id: orderData.id, item_id: basketItemData.basket_items.item_id});
 				basketItemsInfo.push(basketItemData.basket_items.item_name);
 			});
-			console.log(basketItemsInfo);
+			console.log(`data ${JSON.stringify(allbasketItems)}`);
 			await orderDao.addOrderItems(allbasketItems, t); 
 			orderData = {
 				...orderData.dataValues,
@@ -77,6 +77,7 @@ const addNewOrder = async function addNewOrder(body, res) {
         });
         return orderData;
     } catch (e) {
+		console.log(e);
         console.log(JSON.stringify({event: 'order', method: 'addNewOrder', error: e.stack}));
         const errorResponse = errorhandle.handleDbError(e);
         return errorResponse;

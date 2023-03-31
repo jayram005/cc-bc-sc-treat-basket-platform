@@ -1,9 +1,10 @@
 {
   "development": {
-    "username": "root",
+    "username": "treatuser",
     "password": "admin",
-    "database": "codechallange",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "database": "codechallenge",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": "5432"
   }
 }

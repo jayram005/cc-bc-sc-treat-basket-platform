@@ -121,7 +121,7 @@ const Order = database.config.define('order', {
 		allowNull: false,
 		field: 'postCode'
 	}   
-}, { timestamps: true }, {
+}, { timestamps: false }, {
 	indexes: [
 	  {
 		unique: true,
@@ -135,6 +135,5 @@ Order.belongsTo(illness,{
     targetKey:"illness_name",
     as:"illness"
 })
-Order.sync().then();
 
 module.exports = Order;

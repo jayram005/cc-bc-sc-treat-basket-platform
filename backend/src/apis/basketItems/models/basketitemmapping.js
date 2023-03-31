@@ -55,6 +55,5 @@ IllnessItem.belongsTo(BasketItem,{
     targetKey:"item_id",
     as:"basket_items"
 })
-IllnessItem.sync().then();
 
 module.exports = IllnessItem;

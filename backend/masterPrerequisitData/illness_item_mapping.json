@@ -1,0 +1,257 @@
+[
+    {
+      "id": 1,
+      "illness_id": 1,
+      "item_id": 1
+    },
+    {
+      "id": 2,
+      "illness_id": 1,
+      "item_id": 2
+    },
+    {
+      "id": 3,
+      "illness_id": 1,
+      "item_id": 3
+    },
+    {
+      "id": 4,
+      "illness_id": 1,
+      "item_id": 4
+    },
+    {
+      "id": 5,
+      "illness_id": 1,
+      "item_id": 5
+    },
+    {
+      "id": 6,
+      "illness_id": 1,
+      "item_id": 15
+    },
+    {
+      "id": 7,
+      "illness_id": 1,
+      "item_id": 16
+    },
+    {
+      "id": 8,
+      "illness_id": 1,
+      "item_id": 30
+    },
+    {
+      "id": 9,
+      "illness_id": 1,
+      "item_id": 17
+    },
+    {
+      "id": 10,
+      "illness_id": 1,
+      "item_id": 33
+    },
+    {
+      "id": 11,
+      "illness_id": 1,
+      "item_id": 25
+    },
+    {
+      "id": 12,
+      "illness_id": 1,
+      "item_id": 26
+    },
+    {
+      "id": 13,
+      "illness_id": 1,
+      "item_id": 27
+    },
+    {
+      "id": 14,
+      "illness_id": 1,
+      "item_id": 34
+    },
+    {
+      "id": 15,
+      "illness_id": 2,
+      "item_id": 35
+    },
+    {
+      "id": 16,
+      "illness_id": 2,
+      "item_id": 36
+    },
+    {
+      "id": 17,
+      "illness_id": 3,
+      "item_id": 10
+    },
+    {
+      "id": 18,
+      "illness_id": 3,
+      "item_id": 11
+    },
+    {
+      "id": 19,
+      "illness_id": 3,
+      "item_id": 12
+    },
+    {
+      "id": 20,
+      "illness_id": 3,
+      "item_id": 13
+    },
+    {
+      "id": 21,
+      "illness_id": 3,
+      "item_id": 14
+    },
+    {
+      "id": 22,
+      "illness_id": 3,
+      "item_id": 17
+    },
+    {
+      "id": 23,
+      "illness_id": 3,
+      "item_id": 18
+    },
+    {
+      "id": 24,
+      "illness_id": 4,
+      "item_id": 19
+    },
+    {
+      "id": 25,
+      "illness_id": 4,
+      "item_id": 20
+    },
+    {
+      "id": 26,
+      "illness_id": 4,
+      "item_id": 21
+    },
+    {
+      "id": 27,
+      "illness_id": 4,
+      "item_id": 22
+    },
+    {
+      "id": 28,
+      "illness_id": 4,
+      "item_id": 23
+    },
+    {
+      "id": 29,
+      "illness_id": 4,
+      "item_id": 24
+    },
+    {
+      "id": 30,
+      "illness_id": 4,
+      "item_id": 28
+    },
+    {
+      "id": 31,
+      "illness_id": 5,
+      "item_id": 29
+    },
+    {
+      "id": 32,
+      "illness_id": 5,
+      "item_id": 31
+    },
+    {
+      "id": 33,
+      "illness_id": 5,
+      "item_id": 32
+    },
+    {
+      "id": 34,
+      "illness_id": 5,
+      "item_id": 37
+    },
+    {
+      "id": 35,
+      "illness_id": 5,
+      "item_id": 38
+    },
+    {
+      "id": 36,
+      "illness_id": 5,
+      "item_id": 39
+    },
+    {
+      "id": 37,
+      "illness_id": 5,
+      "item_id": 40
+    },
+    {
+      "id": 38,
+      "illness_id": 6,
+      "item_id": 2
+    },
+    {
+      "id": 39,
+      "illness_id": 6,
+      "item_id": 3
+    },
+    {
+      "id": 40,
+      "illness_id": 6,
+      "item_id": 6
+    },
+    {
+      "id": 41,
+      "illness_id": 6,
+      "item_id": 5
+    },
+    {
+      "id": 42,
+      "illness_id": 6,
+      "item_id": 22
+    },
+    {
+      "id": 43,
+      "illness_id": 6,
+      "item_id": 4
+    },
+    {
+      "id": 44,
+      "illness_id": 6,
+      "item_id": 23
+    },
+    {
+      "id": 45,
+      "illness_id": 7,
+      "item_id": 21
+    },
+    {
+      "id": 46,
+      "illness_id": 7,
+      "item_id": 34
+    },
+    {
+      "id": 47,
+      "illness_id": 7,
+      "item_id": 12
+    },
+    {
+      "id": 48,
+      "illness_id": 7,
+      "item_id": 23
+    },
+    {
+      "id": 49,
+      "illness_id": 7,
+      "item_id": 2
+    },
+    {
+      "id": 50,
+      "illness_id": 7,
+      "item_id": 4
+    },
+    {
+      "id": 51,
+      "illness_id": 7,
+      "item_id": 41
+    }
+  ]

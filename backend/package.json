@@ -4,6 +4,9 @@
   "description": "Node Js Backend Template with ORM",
   "main": "index.js",
   "scripts": {
+    "start": "node ./index.js",
+    "dbmigrate": "sequelize db:migrate",
+    "dbseed": "npx sequelize-cli db:seed:all",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

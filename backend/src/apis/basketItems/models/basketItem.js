@@ -15,7 +15,6 @@ const BasketItem = database.config.define(
         item_name: {
             type: DataTypes.STRING(25),
             allowNull: false,
-            unique: true,
             field: 'item_name'
         },
         item_description: {
@@ -31,5 +30,4 @@ const BasketItem = database.config.define(
     },
     { timestamps: false }
 );
-BasketItem.sync().then();
 module.exports = BasketItem;

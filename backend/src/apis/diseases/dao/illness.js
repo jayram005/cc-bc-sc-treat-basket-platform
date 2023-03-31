@@ -3,6 +3,7 @@ const Illness = require('../models/illness');
 async function getAllIllness() {
 	try {
 		let result = await Illness.findAll();
+		console.log(result);
 		return result;
 	} catch (error) {
 		throw error;

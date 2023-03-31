@@ -22,7 +22,7 @@ const orderItems = database.config.define('order_items', {
 			key: 'item_id', 
 		}
 	}
-});
+}, { timestamps: false });
 
 orderItems.belongsTo(order,{
     foreignKey:"order_id",
@@ -35,5 +35,4 @@ orderItems.belongsTo(basketItem,{
     targetKey:"item_id",
     as:"basket_items"
 })
-orderItems.sync().then();
 module.exports = orderItems;
