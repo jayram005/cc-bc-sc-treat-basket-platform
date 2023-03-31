@@ -21,13 +21,13 @@ ports:
     onOpen: node backend/app.js
   - port: 4200
     onOpen: ng serve --host 0.0.0.0
+  - port: 5432
+    onOpen: sudo service postgresql start
 
 # expose the postgres database port
 # so that it can be accessed by the backend
 # and other tools such as DBeaver or pgAdmin
-ports:
-  - port: 5432
-    onOpen: sudo service postgresql start
+
 
 # open the app in a new browser tab
 tasks:
