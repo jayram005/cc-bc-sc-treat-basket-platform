@@ -6,7 +6,7 @@ tasks:
     init: cd backend && npm install
     command: node index.js
   - name: Run Frontend App 
-    init: cd ../frontend && npm install && npm install -g @angular/cli@13.1.0
+    init: cd frontend && npm install && npm install -g @angular/cli@13.1.0
     command: npm run start-local 
 
 ports:
