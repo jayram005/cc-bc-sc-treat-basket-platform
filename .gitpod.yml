@@ -2,8 +2,7 @@ image: gitpod/workspace-full
 
 # prebuild the workspace to speed up development
 tasks:
-  - name: Terminal 
-     && &&  && &&  
+  - name: Terminal  
     command: sudo apt-get update
              sudo service postgresql start 
              sudo apt-get install -y postgresql postgresql-contrib 
@@ -15,8 +14,9 @@ tasks:
              npm install -g npm@latest 
              npm install && node index.js 
              cd ../frontend 
+             npm install -g
              npm install -g @angular/cli@13.1.0 
-             npm install && ng serve --host 0.0.0.0 --disable-host-check 
+             ng serve --host 0.0.0.0 --disable-host-check 
       
 
 ports:
