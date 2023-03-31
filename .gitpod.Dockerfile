@@ -7,11 +7,17 @@ RUN sudo apt-get update \
 USER postgres
 RUN echo "local all all trust" > /etc/postgresql/12/main/pg_hba.conf
 
+RUN node -v >/dev/null 2>&1 || \
+    (curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash - && \
+     sudo apt-get install -y nodejs && \
+     node -v && \
+     npm -v)
+
 # Install nvm (Node Version Manager)
 #RUN command -v nvm || (curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash)
 
 # Install Node.js 16.19.1 using nvm
-RUN /bin/bash -c "source $HOME/.nvm/nvm.sh && nvm install 16.19.1 && nvm use 16.19.1"
+#RUN /bin/bash -c "source $HOME/.nvm/nvm.sh && nvm install 16.19.1 && nvm use 16.19.1"
     
 # Set the default user and password for the PostgreSQL server
 ENV POSTGRES_USER=postgres
