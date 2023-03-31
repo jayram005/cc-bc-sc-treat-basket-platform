@@ -4,7 +4,7 @@ image:
 # prebuild the workspace to speed up development
 
 tasks:
-    before: psql -U postgres -c "CREATE DATABASE codechallenge;" 
+  - before: psql -U postgres -c "CREATE DATABASE codechallenge;" 
             psql -U postgres -c "CREATE USER treatuser WITH PASSWORD 'admin';" 
             psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO treatuser;" 
   - name: Run Backend App 
