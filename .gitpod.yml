@@ -9,10 +9,10 @@ tasks:
              sudo -u postgres createdb codechallenge
              cd backend 
              sudo apt-get install -y Node.js
-             npm install -g npm@latest 
+             npm install --global npm@latest 
              npm install && node index.js 
              cd ../frontend  
-             npm install -g @angular/cli@13.1.0 
+             npm install --global @angular/cli@13.1.0 
              npm install
              ng serve --host 0.0.0.0 --disable-host-check 
       
