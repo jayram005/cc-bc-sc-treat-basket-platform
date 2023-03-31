@@ -3,9 +3,6 @@ FROM gitpod/workspace-full:latest
 # Install PostgreSQL
 RUN sudo apt-get update \
     && sudo apt-get install -y postgresql postgresql-contrib
-    
-USER postgres
-RUN sudo sed -i 's/md5/trust/' /etc/postgresql/12/main/pg_hba.conf
 
 RUN node -v >/dev/null 2>&1 || \
     (curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash - && \
