@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "illness_name": "Cold and Flu"
+    },
+    {
+        "id": 2,
+        "illness_name": "Pneumonia"
+    },
+    {
+        "id": 3,
+        "illness_name": "Bronchitis"
+    },
+    {
+        "id": 4,
+        "illness_name": "Asthama"
+    },
+    {
+        "id": 5,
+        "illness_name": "Chicken pox"
+    },
+    {
+        "id": 6,
+        "illness_name": "Jaundice"
+    },
+    {
+        "id": 7,
+        "illness_name": "Skin Infection"
+    }
+]

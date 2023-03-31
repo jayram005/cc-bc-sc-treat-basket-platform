@@ -1,8 +1,17 @@
-const diseases = require('../models/illness');
+const Illness = require('../models/illness');
 
-async function getAllDiseases() {
+async function getAllIllness() {
 	try {
-		let result = await diseases.findAll();
+		let result = await Illness.findAll();
+		return result;
+	} catch (error) {
+		throw error;
+	}
+}
+
+async function getIllnessByName(name) {
+	try {
+		let result = await Illness.findOne({attributes: ['id'], where: {illness_name: name}});
 		return result;
 	} catch (error) {
 		throw error;
@@ -10,5 +19,6 @@ async function getAllDiseases() {
 }
 
 module.exports = {
-	getAllDiseases
+	getAllIllness,
+	getIllnessByName
 }
