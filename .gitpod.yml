@@ -4,11 +4,9 @@ image: gitpod/workspace-full
 tasks:
   - name: Terminal  
     command: sudo apt-get update
-             sudo service postgresql start 
              sudo apt-get install -y postgresql postgresql-contrib 
+             sudo service postgresql start 
              sudo -u postgres createdb codechallenge
-             sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD 'admin';"
-             sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO postgres;"
              cd backend 
              sudo apt-get install -y Node.js
              npm install -g npm@latest 
