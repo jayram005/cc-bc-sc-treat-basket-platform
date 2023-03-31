@@ -1,11 +1,9 @@
-image: gitpod/workspace-full
-
+image: node:16.19.1
 # prebuild the workspace to speed up development
 tasks:
   - name: Terminal 
-    init: sudo apt-get update
-    command: sudo apt-get install -y Node.js
-             npm install npm@latest 
+    init: npm install 
+    command: npm install npm@latest 
              cd ../frontend  
              npm install @angular/cli@13.1.0 
              npm install
