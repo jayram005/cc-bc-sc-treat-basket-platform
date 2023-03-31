@@ -8,9 +8,9 @@ tasks:
     init: cd backend && npm install
     command: |
             sudo service postgresql start
-            psql -U postgres -c "CREATE DATABASE codechallenge;" 
-            psql -U postgres -c "CREATE USER treatuser WITH PASSWORD 'admin';" 
-            psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO treatuser;"
+            sudo psql -U postgres -c "CREATE DATABASE codechallenge;" 
+            sudo psql -U postgres -c "CREATE USER treatuser WITH PASSWORD 'admin';" 
+            sudo psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO treatuser;"
             node index.js
   - name: Run Frontend App 
     init: cd frontend && npm install && npm install -g @angular/cli@13.1.0
