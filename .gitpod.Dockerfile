@@ -8,7 +8,7 @@ USER postgres
 RUN echo "local all all trust" > /etc/postgresql/12/main/pg_hba.conf
 
 # Install nvm (Node Version Manager)
-RUN command -v nvm || (curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash)
+#RUN command -v nvm || (curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash)
 
 # Install Node.js 16.19.1 using nvm
 RUN /bin/bash -c "source $HOME/.nvm/nvm.sh && nvm install 16.19.1 && nvm use 16.19.1"
