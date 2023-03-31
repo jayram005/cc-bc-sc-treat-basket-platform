@@ -4,13 +4,8 @@ image: gitpod/workspace-full
 tasks:
   - name: Terminal 
     init: sudo apt-get update
-    command: sudo apt-get install -y postgresql postgresql-contrib 
-             sudo service postgresql start 
-             sudo -u postgres createdb codechallenge
-             cd backend 
-             sudo apt-get install -y Node.js
+    command: sudo apt-get install -y Node.js
              npm install npm@latest 
-             npm install && node index.js 
              cd ../frontend  
              npm install @angular/cli@13.1.0 
              npm install
