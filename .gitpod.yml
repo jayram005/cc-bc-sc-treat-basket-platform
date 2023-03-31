@@ -2,12 +2,8 @@ image: node:16.19.1
 # prebuild the workspace to speed up development
 tasks:
   - name: Terminal 
-    init: npm install 
-    command: npm install npm@latest 
-             cd ../frontend  
-             npm install @angular/cli@13.1.0 
-             npm install
-             ng serve --host 0.0.0.0 --disable-host-check 
+    init: cd frontend && npm install 
+    command: ng serve --host 0.0.0.0 --disable-host-check 
       
 
 ports:
