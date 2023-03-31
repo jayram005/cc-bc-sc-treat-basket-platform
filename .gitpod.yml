@@ -1,4 +1,4 @@
-image: ubuntu:latest
+image: gitpod/workspace-full
 
 # prebuild the workspace to speed up development
 tasks:
@@ -9,6 +9,7 @@ tasks:
       sudo -u postgres createdb codechallenge
       sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD 'admin';"
       sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO postgres;"
+      npm install -g @angular/cli@13.1.0
       # Install dependencies for frontend and backend
       cd backend
       npm install
