@@ -5,7 +5,7 @@ RUN sudo apt-get update \
     && sudo apt-get install -y postgresql postgresql-contrib
     
 USER postgres
-RUN echo "local all all trust" > /etc/postgresql/13/main/pg_hba.conf
+RUN echo "local all all trust" > /etc/postgresql/12/main/pg_hba.conf
 
 # Install nvm (Node Version Manager)
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
