@@ -2,39 +2,23 @@ image: gitpod/workspace-full
 
 # prebuild the workspace to speed up development
 tasks:
-  - name: Prebuild Workspace
-    command: |
-      sudo apt-get update && sudo apt-get install -y postgresql
-      sudo service postgresql start
-      sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD 'admin';"
-      sudo -u postgres createdb codechallenge
-      cd backend
-      npm install
-      cd ../frontend
-      npm install
-      ng build
+  - name: Terminal  
+    init: sudo apt-get update
+    command: sudo apt-get install -y postgresql postgresql-contrib 
+             sudo service postgresql start 
+             sudo -u postgres createdb codechallenge
+             cd backend 
+             sudo apt-get install -y Node.js
+             npm install --global npm@latest 
+             npm install && node index.js 
+             cd ../frontend  
+             npm install --global @angular/cli@13.1.0 
+             npm install
+             ng serve --host 0.0.0.0 --disable-host-check 
+      
 
-# start the backend server and the frontend app
-# then open the app in a new browser tab
 ports:
   - port: 4500
-    onOpen: node backend/app.js
+    onOpen: ignore
   - port: 4200
-    onOpen: ng serve --host 0.0.0.0
-
-# expose the postgres database port
-# so that it can be accessed by the backend
-# and other tools such as DBeaver or pgAdmin
-ports:
-  - port: 5432
-    onOpen: sudo service postgresql start
-
-# open the app in a new browser tab
-tasks:
-  - name: Open Browser
-    command: gp await-port 4200 && gp preview $(gp url 4200)
-
-# specify the default workspace layout
-layout: 
-  - "frontend 50% 50%"
-  - "backend 50% 50%"
+    onOpen: open-browser
