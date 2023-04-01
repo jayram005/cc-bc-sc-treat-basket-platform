@@ -2,21 +2,24 @@ image:
   file: .gitpod.Dockerfile
   
 # prebuild the workspace to speed up development
-
 tasks:
   - name: Run Backend App 
     init: |
-         sudo service postgresql start
+         sudo service postgresql start # Start the postgresql service
+         # Update the postgres user to trust mode
          sudo sed -i "s/local\s\+all\s\+postgres\s\+peer/local\tall\t\tpostgres\t\t\t\ttrust/" /etc/postgresql/12/main/pg_hba.conf
          sudo sed -i "s/local\s\+all\s\+all\s\+peer/local\tall\t\tall\t\t\t\tmd5/" /etc/postgresql/12/main/pg_hba.conf
-         sudo service postgresql restart
+         sudo service postgresql restart # Restart the postgresql service
+         # Run database pre-req command to create an db and user
          sudo psql -U postgres -c "CREATE DATABASE codechallenge;" 
          sudo psql -U postgres -c "CREATE USER treatuser WITH PASSWORD 'admin';" 
          sudo psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO treatuser;"
          cd backend && npm install && npm install -g sequelize-cli
     command: |
-         sequelize db:migrate
+         sequelize db:migrate  # Run database migration scripts
+         # Run database seeding scripts to populate deafult data in database
          npx sequelize-cli db:seed:all
+         # Run the backend server
          node index.js
   - name: Run Frontend App 
     init: cd frontend && npm install && npm install -g @angular/cli@13.1.0

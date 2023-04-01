@@ -1,4 +1,4 @@
-# bc-cc-treat-basket-web
+# bc-cc-treat-basket-frontend
 The BC Gov is going to set up a service that delivers treat baskets to sick children. We want to allow members of the public to identify children to receive a basket.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.0. Please follow the below steps to clone, run, build, and deploy this proje
@@ -17,17 +17,27 @@ Run `npm install -g @angular/cli@13.1.0` to install the angular cli globally in 
 
 ## Step 2 -  Clone the code using the below commands and install dependencies
 
-Repository URL for this project: [https://github.com/jayram005/cc-bc-sc-treat-basket-platform]
+GitHub Repository URL for this project: [https://github.com/jayram005/cc-bc-sc-treat-basket-platform]
 
-Clone this repository using the below command `git clone -b master [git@github.com:jayram005/cc-bc-sc-treat-basket-platform.git]` copy the git URL from the repo if the repository name is different
+Clone this repository using the below command 
 
-Important step - Open the terminal on your machine and navigate to the root folder of the project using `cd <path_to_project_root_folder>/frontend`
+`git clone -b master [git@github.com:jayram005/cc-bc-sc-treat-basket-platform.git]` 
+
+Copy the git URL from the repo if the repository name is different
+
+Important step - Open the terminal on your machine and navigate to the root folder of the project using 
+
+`cd <path_to_project_root_folder>/frontend`
 
 Run `npm install` to install all the project dependencies.
 
 ## Step 3 - Run and serve the application locally
 
-Run `npm run start-local` for a local server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run start-local` for a local server. 
+
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+You see a message on screen as Compiled successfully.
 
 `Note: In order for the app to fully function locally the backend code also has to be running locally ` Refer to the steps to run that in respective backend folder of this project root folder ReadMe file
 
