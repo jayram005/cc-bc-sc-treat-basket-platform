@@ -1,1 +1,1 @@
-export const allAllergies =['one','two']
+export const allAllergies =['Food allergies','Seasonal allergies','Asthma','Eczema']

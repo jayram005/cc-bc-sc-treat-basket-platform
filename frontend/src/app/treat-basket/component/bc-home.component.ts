@@ -27,7 +27,7 @@ export class BcHomeComponent implements OnInit {
   isOrderPlaced(event: any) {
     // TO DO : Add event    
     if (event.isSuccess) {
-      this.getDeliveredBasketCount();
+      // this.getDeliveredBasketCount();
       this.showConfirmation = true;
       this.displayDescription = false;
       this.displayError = false;
@@ -45,9 +45,9 @@ export class BcHomeComponent implements OnInit {
     this.displayDescription = true;
   }
 
-  getDeliveredBasketCount() {
-    this.orderCountSvcSub = this.orderSvc.getDeliveredBasketCount().subscribe(baskets => {
-      this.orderCountSvc.setOrderCount(baskets.orderCount);
-    });
-  }
+  // getDeliveredBasketCount() {
+  //   this.orderCountSvcSub = this.orderSvc.getDeliveredBasketCount().subscribe(baskets => {
+  //     this.orderCountSvc.setOrderCount(baskets.orderCount);
+  //   });
+  // }
 }

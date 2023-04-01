@@ -1,0 +1,17 @@
+@import "../../../../styles/sass/abstracts/variables.scss";
+
+.alert {
+  padding: 0.85rem 1.5rem;
+  border-radius: 4px;
+  background: $color-white;
+  position: relative;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  opacity: 1;
+}
+
+.alert-warning {
+  color: $color-black;
+  background-color: $color-yellow;
+  border-color: $color-dark-yellow;
+}
