@@ -41,7 +41,7 @@ const addNewOrder = async function addNewOrder(body, res) {
 			const errorMsg = "Order already placed by same child";
 			throw res.status(409).json({ status: 409, type: "error", message: errorMsg });
 		}
-		const illnessId = await illness.getIllnessByName(body.typeOfIllness);
+		const illnessId = await illness.getIllnessByName(body.typeOfIllness, res);
 
 		if(illnessId && illnessId.id === "undefined" && basketItemsData.length === 0){
 			const errorMsg = "Illness doesn't elegible for Treat Basket";
@@ -51,9 +51,8 @@ const addNewOrder = async function addNewOrder(body, res) {
 		const birthDate = moment(dateOfBirth);
 		const age = moment().diff(birthDate, 'years');
 
-		const ageGroup = checkNumberRange(age);
-		const basketItemsData = await basketItems.getBasketItems(illnessId.id, ageGroup);
-		console.log(JSON.stringify(basketItemsData));
+		const ageGroup = checkNumberRange(age, res);
+		const basketItemsData = await basketItems.getBasketItems(illnessId.id, ageGroup, res);
 		if(basketItemsData.length === 0){
 			const errorMsg = "Illness doesn't elegible for Treat Basket";
 			throw res.status(400).json({ status: 400, type: "error", message: errorMsg });
@@ -77,24 +76,22 @@ const addNewOrder = async function addNewOrder(body, res) {
         });
         return orderData;
     } catch (e) {
-		console.log(e);
-        console.log(JSON.stringify({event: 'order', method: 'addNewOrder', error: e.stack}));
         const errorResponse = errorhandle.handleDbError(e);
         return errorResponse;
     }
 };
 
-function checkNumberRange(number) {
+function checkNumberRange(number, res) {
 	switch (true) {
 	  case (number >= 1 && number <= 5):
 		return "0-5";
 	  case (number >= 6 && number <= 10):
 		return "6-10";
-	  case (number > 11):
+	  case (number > 11  && number <= 16):
 		return "11-16";
 	  default:
-		console.log("Age not valid");
-		break;
+		const errorMsg = "Age group not elegible for treat basket";
+		throw res.status(400).json({ status: 400, type: "error", message: errorMsg });
 	}
 }
 
@@ -124,6 +121,17 @@ function validateRequest(body, res){
         throw res.status(400).json({ status: 400, type: "error", message: errorMessage, data: [] });
     }
 }
+
+const getOrderCount = async function getOrderCount(body, res) {
+    try {
+		const ordercountData = await orderDao.orderCount();
+		return ordercountData;
+	} catch (e) {
+		const errorResponse = errorhandle.handleDbError(e);
+		return errorResponse;
+	}
+};
 module.exports = {
-    addNewOrder
+    addNewOrder,
+	getOrderCount
 }

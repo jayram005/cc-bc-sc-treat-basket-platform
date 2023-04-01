@@ -28,8 +28,19 @@ async function getOrderDetails(name, dateOfBirth, phoneNo) {
 	}
 }
 
+async function orderCount() {
+	try {	
+		let result = await order.count();
+		return result;
+	} catch (error) {
+		throw error;
+	}
+}
+
+
 module.exports = {
 	placeOrder,
 	addOrderItems,
-	getOrderDetails
+	getOrderDetails,
+	orderCount
 }

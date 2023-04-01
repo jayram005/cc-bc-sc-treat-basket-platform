@@ -120,7 +120,7 @@ module.exports = {
         allowNull: false,
         field: 'postCode'
       }   
-    }, { timestamps: true }, {
+    }, { timestamps: false }, {
       indexes: [
         {
         unique: true,

@@ -8,3 +8,12 @@ module.exports.order = async  (req, res) => {
 		console.log(err);
 	}
 };
+
+module.exports.orderCount = async  (req, res) => {
+	try {
+		const response = await orderService.getOrderCount();
+        return 	{orderCount : response};
+	} catch (err) {
+		console.log(err);
+	}
+};

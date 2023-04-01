@@ -29,7 +29,7 @@ module.exports = {
           key: 'item_id', 
       }
     }
-  });
+  }, { timestamps: false });
   await queryInterface.addIndex('orders', ['id'], {
     name: 'orders_id_1idx'
   });

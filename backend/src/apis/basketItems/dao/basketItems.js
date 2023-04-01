@@ -2,7 +2,7 @@ const basketItem = require('../models/basketItem');
 const basketitemmapping = require('../models/basketitemmapping');
 const illness = require('../../diseases/models/illness');
 
-async function getBasketItems(illnessId, ageGroup) {
+async function getBasketItems(illnessId, ageGroup, res) {
 	try {
         const illnessBasketItem = await basketitemmapping.findAll({
             attributes: ["basket_items.item_name", "basket_items.item_id"],
@@ -23,6 +23,10 @@ async function getBasketItems(illnessId, ageGroup) {
             ],
 
         });
+        if(!illnessBasketItem || illnessBasketItem.length === 0){
+            const errorMsg = "Illness is not elegible for treat basket";
+			throw res.status(400).json({ status: 400, type: "error", message: errorMsg });
+        }
 		return illnessBasketItem;
 	} catch (error) {
 		throw error;
