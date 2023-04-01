@@ -60,7 +60,7 @@ const Order = database.config.define('order', {
 	},
 	symptoms: {
 		type: DataTypes.JSON,
-		allowNull: true,
+		allowNull: false,
 		field: 'symptoms'
 	},
 	allergies: {
@@ -70,7 +70,7 @@ const Order = database.config.define('order', {
 	},
 	medication: {
 		type: DataTypes.JSON,
-		allowNull: false,
+		allowNull: true,
 		field: 'medication'
 	},
 	phone_number: {

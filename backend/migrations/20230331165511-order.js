@@ -18,7 +18,7 @@ module.exports = {
       },
       gender: {
         type: Sequelize.ENUM,
-        values: ['Father', 'Mother','Brother', 'Sister', 'Guardian'],
+        values: ['Male', 'Female','Other'],
         allowNull: false,
         field: 'gender'
       },
@@ -39,7 +39,7 @@ module.exports = {
       },
       relation: {
         type: Sequelize.ENUM,
-        values: ['Father', 'Mother','Other'],
+        values: ['Father', 'Mother','Brother', 'Sister', 'Guardian'],
         allowNull: false,
         field: 'relation'
       },
@@ -59,7 +59,7 @@ module.exports = {
       },
       symptoms: {
         type: Sequelize.JSON,
-        allowNull: true,
+        allowNull: false,
         field: 'symptoms'
       },
       allergies: {
@@ -69,7 +69,7 @@ module.exports = {
       },
       medication: {
         type: Sequelize.JSON,
-        allowNull: false,
+        allowNull: true,
         field: 'medication'
       },
       phone_number: {
@@ -79,7 +79,7 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
         validate: {
           isEmail: true
         },
