@@ -1,8 +1,0 @@
-{
-  "/code-challenge/*": {
-    "target": "https://api.devdomain.com/api",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  }
-}

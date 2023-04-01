@@ -10,13 +10,20 @@ import { ApiService } from "../api.service";
 export class ManageInfoService {
   url: URL = {} as URL;
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService) { }
 
   getTypeOfIllness() {
-    this.url = urls.getTypeOfIllness();
+    this.url = urls.typeOfIllness();
     return this.api.get(this.url.endPoint);
   }
 
- 
+  getDeliveredBasketCount() {
+    this.url = urls.deliveredBaskets();
+    return this.api.get(this.url.endPoint);
+  }
 
+  order(orderRequest:any){
+    this.url = urls.order();
+    return this.api.post(this.url.endPoint,orderRequest);
+  }
 }

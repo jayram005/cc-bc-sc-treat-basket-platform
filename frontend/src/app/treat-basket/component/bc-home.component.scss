@@ -10,9 +10,11 @@
         width: 50%;
         float: left;
         @include respond(phone) {
-            display: none;
+            width: 100%;
+            float: unset;
         }
     }
+
     &-layout_success_50 {
         width: 50%;
         float: left;      

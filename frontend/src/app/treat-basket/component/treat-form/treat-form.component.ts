@@ -43,7 +43,7 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
   healthConditionForm: FormGroup;
   ContactDeliveryForm: FormGroup;
   illnessSelected: any;
-  @Output() isFormSubmit = new EventEmitter<boolean>();
+  @Output() isFormSubmit = new EventEmitter<any>();
   relationWithChildData = relationWithChildData;
   currentMedications = currentMedications;
   symptomCtrl = new FormControl();
@@ -55,7 +55,7 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
   allAllergies = allAllergies;
   allMedications = allMedications
 
-
+  orderSvcSub: Subscription;
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   symmptoms = [];
@@ -74,6 +74,7 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
   getTypesOfIllnessSubscription: Subscription;
   typesOfIllnessList = [];
   selectedGender: any;
+  emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]{2,4}$/;
   constructor(private fb: FormBuilder,
     private bpObserverSvc: BreakpointObserver,
     private manageInfoService: ManageInfoService
@@ -125,7 +126,7 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
     });
     this.ContactDeliveryForm = this.fb.group({
       phoneNumber: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required,Validators.pattern(this.emailPattern)]],
       deliveryAddress: ['', Validators.required],
       deliveryDate: ['', Validators.required],
       DeliveryTime: ['', Validators.required],
@@ -162,34 +163,26 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
   };
 
   submitChildDetails() {
-    console.log(this.childDetailsForm.value)
     this.stepper.next();
   }
 
   healthConditionSubmit() {
-    console.log(this.healthConditionForm.value)
+
     this.stepper.selected.completed = true;
     this.stepper.next();
   }
 
   submitInformation() {
-    //////
-    //converting MatDate to Readable date
     const childDOBmomentDate = new Date(this.childDetailsForm.value.DOB);
-    const ChildDOBformattedDate = moment(childDOBmomentDate).format("YYYY/MM/DD");
-    console.log(ChildDOBformattedDate);
-    /////
+    const ChildDOBformattedDate = moment(childDOBmomentDate).format("YYYY-MM-DD");
+
     const illnessSincemomentDate = new Date(this.healthConditionForm.value.illnessSince);
-    const illnessSincemomentDateformattedDate = moment(illnessSincemomentDate).format("YYYY/MM/DD");
-    console.log(illnessSincemomentDateformattedDate);
-    /////
+    const illnessSincemomentDateformattedDate = moment(illnessSincemomentDate).format("YYYY-MM-DD");
+
     const deliveryDatemomentDate = new Date(this.ContactDeliveryForm.value.deliveryDate);
-    const deliveryDateformattedDate = moment(deliveryDatemomentDate).format("YYYY/MM/DD");
-    console.log(deliveryDateformattedDate);
+    const deliveryDateformattedDate = moment(deliveryDatemomentDate).format("MM-DD-YYYY");
 
-
-    //////
-    const infoReqBody = {
+    const orderRequestBody = {
       name: this.childDetailsForm.value.childName,
       gender: this.selectedGender,
       weight: this.childDetailsForm.value.weight,
@@ -203,18 +196,27 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
       medication: this.medications,
       phoneNo: this.ContactDeliveryForm.value.phoneNumber,
       email: this.ContactDeliveryForm.value.email,
-      delivery_address: this.ContactDeliveryForm.value.deliveryAddress,
-      deivery_date: deliveryDateformattedDate,
+      deliveryAddress: this.ContactDeliveryForm.value.deliveryAddress,
+      deliveryDate: `${deliveryDateformattedDate} ${this.ContactDeliveryForm.value.DeliveryTime}`,
       latitude: "0",
       logitude: "0",
       city: this.ContactDeliveryForm.value.city,
       state: this.ContactDeliveryForm.value.state,
       postCode: this.ContactDeliveryForm.value.postcode
     }
-
-    console.log("Req body: ", infoReqBody);
-    //TO DO api integration
-    this.isFormSubmit.emit(true);
+    this.orderSvcSub = this.manageInfoService.order(orderRequestBody).subscribe({
+      next: (response) => {
+        if (response.id) {
+          this.isFormSubmit.emit({ isSuccess: true, response });
+        } else {
+          this.isFormSubmit.emit({ isSuccess: false });
+        }
+      },
+      error: (error) => {
+        console.log('submit info Error=> : ', error);
+        this.isFormSubmit.emit({ isSuccess: false });
+      },
+    });
   }
 
 
@@ -233,7 +235,6 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
   }
 
   onGenderChange(event) {
-    
     this.selectedGender = event.value;
   }
 
@@ -273,8 +274,6 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
     event.chipInput!.clear();
   }
 
-
-
   removeSymptom(symmptom): void {
     const index = this.symmptoms.indexOf(symmptom);
     if (index >= 0) {
@@ -295,7 +294,6 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
       this.medications.splice(index, 1);
     }
   }
-  
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.symmptoms.push(event.option.viewValue);
@@ -333,6 +331,9 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.getTypesOfIllnessSubscription) {
       this.getTypesOfIllnessSubscription.unsubscribe();
+    }
+    if (this.orderSvcSub) {
+      this.orderSvcSub.unsubscribe();
     }
   }
 }

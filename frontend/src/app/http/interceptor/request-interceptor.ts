@@ -11,14 +11,14 @@ export class RequestInterceptor implements HttpInterceptor {
   constructor(private spinnerService: SpinnerService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    req = req.clone({
+      headers: req.headers.set('Content-Type', 'application/json')
+    });
     this.count++;
     this.spinType = req.headers.get('CustomSpinner') ? 'sub' : 'main';
     if (this.count === 1) {
       this.spinnerService.show(this.spinType);
     }
-    req = req.clone({
-      headers: req.headers.set('Content-Type', 'application/json')
-    });
     const handleObs: Observable<HttpEvent<any>> = next.handle(req);
     return handleObs
       .pipe(

@@ -17,6 +17,7 @@ import { ConfirmationBannerComponent } from './component/confirmation-banner/con
 import { MaterialModule } from '../material/material.module';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { CancelBannerComponent } from './component/cancel-banner/cancel-banner.component';
+import { OrderCountService } from './services/modules/manage-info/order-count.service';
 @NgModule({
   declarations: [BcHomeComponent, EnqueryFormComponent, HomeBannerComponent, BannerDescriptionComponent, ConfirmationComponent, ConfirmationBannerComponent, CancelBannerComponent],
   imports: [
@@ -34,6 +35,6 @@ import { CancelBannerComponent } from './component/cancel-banner/cancel-banner.c
     NgxMaterialTimepickerModule
   ],
   exports: [],
-  providers: [DatePipe]
+  providers: [DatePipe,OrderCountService]
 })
 export class BcHomeModule { }

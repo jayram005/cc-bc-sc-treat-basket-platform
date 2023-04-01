@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
+import * as moment from 'moment';
 declare let anime: any;
 export interface Tile {
   urls: string;
@@ -11,17 +12,21 @@ export interface Tile {
   styleUrls: ['./confirmation-banner.component.scss']
 })
 export class ConfirmationBannerComponent implements OnInit {
-
+  @Input() orderResponse:any;
+  successText = '';
+  successHeading ="Successfully Added Treat to Basket"
   basketCount = 0;
   tiles: Tile = { text: 'order count', urls: 'assets/merchant/banner/confirmation-banner.png',bannerText:''};
   pageHeadingText = `Hurray`;
-  successText = `Basket containing Tablets, Vitamins, Supplements will be delivered to Child Name 
-  living at Child Address on Date & Time`;
  
   constructor() {
   }
 
   ngOnInit(): void { 
+    const convertedDateTime =  moment.utc(this.orderResponse.deivery_date).format('MM/DD/YYYY HH:MM');
+    this.successText = `Basket containing Tablets, Vitamins, 
+                        Supplements will be delivered to ${this.orderResponse.name}
+                        living at ${this.orderResponse.delivery_address} on ${convertedDateTime}`;
     this.getDeliveredBasketCount();  
   }
 
