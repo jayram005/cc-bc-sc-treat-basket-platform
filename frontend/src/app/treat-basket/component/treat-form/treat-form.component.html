@@ -5,6 +5,7 @@
       <div class="code-challenge-basket-form-header__title">
         Fill in your information to receive a get well basket
       </div>
+      <code-challenge-alert-msg></code-challenge-alert-msg>
     </div>
     <div>
       <mat-stepper orientation="vertical" [linear]="true" #stepper>
@@ -31,6 +32,9 @@
                   <mat-error *ngIf="hasError(childDetailsForm, 'weight', 'required')">
                     Weight is required
                   </mat-error>
+                  <mat-error *ngIf="hasError(childDetailsForm, 'weight', 'pattern')">
+                    Invalid Weight
+                  </mat-error>
                 </mat-form-field>
               </mat-grid-tile>
 
@@ -44,9 +48,12 @@
                   <mat-hint>MM/DD/YYYY</mat-hint>
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
-                  <mat-error *ngIf="hasError(childDetailsForm, 'DOB', 'required')">
-                    DOB is required
-                  </mat-error>
+                  <mat-error *ngIf="childDetailsForm.controls.DOB.touched && childDetailsForm.controls.DOB.errors?.notEligible">
+                    Age between 0 to 16yrs allowed
+                   </mat-error>
+                   <mat-error *ngIf="hasError(childDetailsForm, 'DOB', 'required')">
+                     DOB is required
+                   </mat-error>
                 </mat-form-field>
               </mat-grid-tile>
 
@@ -135,32 +142,6 @@
             </mat-grid-list>
 
             <div class="chip-rows-container">
-
-
-              <!-- <mat-grid-list class="" cols="1" rowHeight="8.5rem">
-                <mat-grid-tile>
-                  <mat-form-field class="symptoms-chip-list" appearance="outline">
-                    <mat-label>Symptoms</mat-label>
-                    <mat-chip-list #symptomschipList aria-label="Fruit selection">
-                      <mat-chip *ngFor="let symmptom of symmptoms" (removed)="removeSymptom(symmptom)">
-                        {{symmptom}}
-                        <button matChipRemove>
-                          <mat-icon>cancel</mat-icon>
-                        </button>
-                      </mat-chip>
-                      <input placeholder="symptom..." 
-                      formControlName="symptoms" 
-                      [matChipInputFor]="symptomschipList"
-                      
-                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
-                      [matChipInputAddOnBlur]="addOnBlur"
-                      (matChipInputTokenEnd)="addSymptom($event)">
-                    </mat-chip-list>
-                    
-                  </mat-form-field>
-                </mat-grid-tile>
-              </mat-grid-list> -->
-
               <mat-grid-list  cols="1" rowHeight="8.5rem">
                 <mat-grid-tile>
                   <mat-form-field class="symptoms-chip-list" appearance="outline">
@@ -188,31 +169,11 @@
                         {{symptom}}
                       </mat-option>
                     </mat-autocomplete>
+                    
                   </mat-form-field>
                 </mat-grid-tile>
 
               </mat-grid-list>
-
-
-
-              <!-- <mat-grid-list class="" cols="1" rowHeight="8.5rem">
-                <mat-grid-tile>
-                  <mat-form-field class="symptoms-chip-list" appearance="outline">
-                    <mat-label>Allergies</mat-label>
-                    <mat-chip-list #chipList aria-label="Fruit selection">
-                      <mat-chip *ngFor="let allergy of allergies" (removed)="removeAllergy(allergy)">
-                        {{allergy}}
-                        <button matChipRemove>
-                          <mat-icon>cancel</mat-icon>
-                        </button>
-                      </mat-chip>
-                      <input placeholder="allergy..." formControlName="allergies" [matChipInputFor]="chipList"
-                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                        (matChipInputTokenEnd)="addAllergy($event)">
-                    </mat-chip-list>
-                  </mat-form-field>
-                </mat-grid-tile>
-              </mat-grid-list> -->
 
 
               <mat-grid-list  cols="1" rowHeight="8.5rem">
@@ -248,24 +209,6 @@
               </mat-grid-list>
 
 
-              <!-- <mat-grid-list class="" cols="1" rowHeight="8.5rem">
-                <mat-grid-tile>
-                  <mat-form-field class="symptoms-chip-list" appearance="outline">
-                    <mat-label>Medications</mat-label>
-                    <mat-chip-list #MedicationchipList aria-label="Fruit selection">
-                      <mat-chip *ngFor="let medication of medications" (removed)="removeMedication(medication)">
-                        {{medication}}
-                        <button matChipRemove>
-                          <mat-icon>cancel</mat-icon>
-                        </button>
-                      </mat-chip>
-                      <input placeholder="Medications..." formControlName="currentMedication"
-                        [matChipInputFor]="MedicationchipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                        [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addMedication($event)">
-                    </mat-chip-list>
-                  </mat-form-field>
-                </mat-grid-tile>
-              </mat-grid-list> -->
 
 
               <mat-grid-list  cols="1" rowHeight="8.5rem">
@@ -335,7 +278,7 @@
 
               <mat-grid-tile>
                 <mat-form-field appearance="outline">
-                  <mat-label>email</mat-label>
+                  <mat-label>Email</mat-label>
                   <input matInput placeholder="Email" formControlName="email" required>
                   <mat-error *ngIf="hasError(ContactDeliveryForm, 'email', 'required')">
                     Email is required
@@ -351,7 +294,7 @@
                 <mat-form-field appearance="outline" class="date-field">
                   <mat-label>Preferred Delivery Date</mat-label>
                   <input matInput [matDatepicker]="picker2" placeholder="Delivery Date" formControlName="deliveryDate"
-                    required [min]="today">
+                   [min]="today">
                   <mat-hint>MM/DD/YYYY</mat-hint>
                   <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                   <mat-datepicker #picker2></mat-datepicker>
@@ -360,12 +303,9 @@
               <mat-grid-tile>
                 <mat-form-field appearance="outline">
                   <mat-label>Preferred Delivery Time</mat-label>
-                  <input matInput placeholder="Enter allergies" formControlName="DeliveryTime" required
+                  <input matInput placeholder="Enter allergies" formControlName="DeliveryTime"
                     [ngxTimepicker]="picker4" [format]="24">
                   <ngx-material-timepicker #picker4 class=""></ngx-material-timepicker>
-                  <mat-error *ngIf="hasError(ContactDeliveryForm, 'DeliveryTime', 'required')">
-                    Delivery time is required
-                  </mat-error>
                 </mat-form-field>
               </mat-grid-tile>
 
@@ -389,12 +329,16 @@
                   </mat-error>
                 </mat-form-field>
               </mat-grid-tile>
+
               <mat-grid-tile>
                 <mat-form-field appearance="outline">
-                  <mat-label>State</mat-label>
-                  <input matInput placeholder="Enter city" formControlName="state" required>
+                  <mat-label>District</mat-label>
+                  <mat-select  placeholder="Enter District" formControlName="state" required>
+                    <mat-option [value]="district"
+                    *ngFor="let district of districts">{{district}}</mat-option>
+                  </mat-select>
                   <mat-error *ngIf="hasError(ContactDeliveryForm, 'state', 'required')">
-                    state is required
+                    District is required
                   </mat-error>
                 </mat-form-field>
               </mat-grid-tile>

@@ -16,11 +16,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { AlertMsgComponent } from './alert-msg/alert-msg.component';
 
 @NgModule({
   declarations: [WhiteSpaceTrimPipe, SpinnerComponent,
     FormatTimePipe, SubSpinnerComponent, AddressTitleCasePipe,
-    FormatPhoneDirective, DigitOnlyDirective,
+    FormatPhoneDirective, DigitOnlyDirective,AlertMsgComponent,
     FooterComponent, HeaderComponent],
   imports: [
     CommonModule,
@@ -42,7 +43,7 @@ import { HeaderComponent } from './header/header.component';
     DigitOnlyDirective,
     WhiteSpaceTrimPipe, SpinnerComponent,
     FormatTimePipe, SubSpinnerComponent,
-    FooterComponent, HeaderComponent
+    FooterComponent, HeaderComponent,AlertMsgComponent
   ],
   providers: [SpinnerService, AddressTitleCasePipe]
 })

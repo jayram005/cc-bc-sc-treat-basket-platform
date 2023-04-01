@@ -3,6 +3,7 @@ import { trigger, transition, animate, style } from '@angular/animations';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { Subscription } from 'rxjs';
+import { AgeValidator } from '../../../common/helpers/age.validator';
 import { BusinessQueryForm, BusinessEnqueryRequest, BusinessEnqueryResponse } from '../../../common/models/businessEnquiry';
 // import { AnalyticsService } from 'src/app/common/analytics/service/amplitude.service';
 // import { SalonService } from 'src/app/common/mediation/salon.services';
@@ -18,6 +19,7 @@ import { ManageInfoService } from '../../services/modules/manage-info/manage-inf
 ////json constants
 import { relationWithChildData } from '../../../common/constants/jsonrelationWithChildData'
 import { currentMedications } from '../../../common/constants/jsonCurrentMedications'
+import { DistrictList } from '../../../common/constants/jsonDistricts'
 import { allSymptoms } from '../../../common/constants/jsonAllSymptoms'
 import { allAllergies } from '../../../common/constants/jsonAllAllergies'
 import { allMedications } from '../../../common/constants/jsonAllMedications'
@@ -25,6 +27,7 @@ import { allMedications } from '../../../common/constants/jsonAllMedications'
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { AlertService } from 'src/app/common/services/alert.service';
 
 export interface Fruit {
   name: string;
@@ -46,6 +49,7 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
   @Output() isFormSubmit = new EventEmitter<any>();
   relationWithChildData = relationWithChildData;
   currentMedications = currentMedications;
+  districts = DistrictList;
   symptomCtrl = new FormControl();
   filteredSymptoms: Observable<string[]>;
   filteredAllergies: Observable<string[]>;
@@ -75,9 +79,11 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
   typesOfIllnessList = [];
   selectedGender: any;
   emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]{2,4}$/;
+  weightPattern = /^[0-9]{1,2}$/;
   constructor(private fb: FormBuilder,
     private bpObserverSvc: BreakpointObserver,
-    private manageInfoService: ManageInfoService
+    private manageInfoService: ManageInfoService,
+    private alertSvc: AlertService
   ) {
     this.bpObserverSvcSub = bpObserverSvc
       .observe(['(min-width: 600px)'])
@@ -111,8 +117,8 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.childDetailsForm = this.fb.group({
       childName: ['', Validators.required],
-      weight: ['', Validators.required],
-      DOB: ['', Validators.required],
+      weight: ['', [Validators.required,Validators.pattern(this.weightPattern)]],
+      DOB: ['', [Validators.required,AgeValidator.validateAgeByDate]],
       gender: ['', Validators.required],
       parentName: ['', Validators.required],
       relationWithChild: ['', Validators.required],
@@ -121,15 +127,15 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
       typeOfIllness: ['', Validators.required],
       symptoms: ['', Validators.required],
       illnessSince: ['', Validators.required],
-      allergies: ['', Validators.required],
-      currentMedication: ['', Validators.required],
+      allergies: [''],
+      currentMedication: [''],
     });
     this.ContactDeliveryForm = this.fb.group({
       phoneNumber: ['', Validators.required],
-      email: ['', [Validators.required,Validators.pattern(this.emailPattern)]],
+      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       deliveryAddress: ['', Validators.required],
-      deliveryDate: ['', Validators.required],
-      DeliveryTime: ['', Validators.required],
+      deliveryDate: [''],
+      DeliveryTime: [''],
       city: ['', Validators.required],
       state: ['', Validators.required],
       postcode: ['', Validators.required],
@@ -152,6 +158,10 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
 
         },
       });
+  }
+
+  onDistrictChange() {
+
   }
 
   public hasError = (
@@ -179,9 +189,18 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
     const illnessSincemomentDate = new Date(this.healthConditionForm.value.illnessSince);
     const illnessSincemomentDateformattedDate = moment(illnessSincemomentDate).format("YYYY-MM-DD");
 
+   
     const deliveryDatemomentDate = new Date(this.ContactDeliveryForm.value.deliveryDate);
-    const deliveryDateformattedDate = moment(deliveryDatemomentDate).format("MM-DD-YYYY");
-
+    let deliveryDateformattedDate;
+    if(deliveryDatemomentDate && !isNaN(deliveryDatemomentDate.getTime())) {
+        console.log('date');
+        deliveryDateformattedDate = `${moment(deliveryDatemomentDate).format("MM-DD-YYYY")} ${this.ContactDeliveryForm.value.DeliveryTime}`;
+    } else {
+      console.log('not date');
+      let today = new Date();
+      deliveryDateformattedDate = `${moment(today).add(3, 'days').format("MM-DD-YYYY")} 18:00`;
+    }
+   
     const orderRequestBody = {
       name: this.childDetailsForm.value.childName,
       gender: this.selectedGender,
@@ -197,7 +216,7 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
       phoneNo: this.ContactDeliveryForm.value.phoneNumber,
       email: this.ContactDeliveryForm.value.email,
       deliveryAddress: this.ContactDeliveryForm.value.deliveryAddress,
-      deliveryDate: `${deliveryDateformattedDate} ${this.ContactDeliveryForm.value.DeliveryTime}`,
+      deliveryDate: deliveryDateformattedDate,
       latitude: "0",
       logitude: "0",
       city: this.ContactDeliveryForm.value.city,
@@ -214,7 +233,7 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.log('submit info Error=> : ', error);
-        this.isFormSubmit.emit({ isSuccess: false });
+        this.alertSvc.warning( error?.message || "Something went wrong, Try again.");
       },
     });
   }

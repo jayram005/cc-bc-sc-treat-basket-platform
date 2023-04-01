@@ -83,7 +83,7 @@ const addNewOrder = async function addNewOrder(body, res) {
 
 function checkNumberRange(number, res) {
 	switch (true) {
-	  case (number >= 1 && number <= 5):
+	  case (number >= 0 && number <= 5):
 		return "0-5";
 	  case (number >= 6 && number <= 10):
 		return "6-10";

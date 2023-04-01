@@ -1,1 +1,1 @@
-export const  allSymptoms = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry']
+export const  allSymptoms = ['Fever', 'Cough', 'Sore throat', 'Earache', 'Headache']

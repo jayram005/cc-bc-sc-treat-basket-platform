@@ -18,14 +18,16 @@ export class ConfirmationBannerComponent implements OnInit {
   basketCount = 0;
   tiles: Tile = { text: 'order count', urls: 'assets/merchant/banner/confirmation-banner.png',bannerText:''};
   pageHeadingText = `Hurray`;
- 
+  bastketItemsListDisplay = '';
   constructor() {
   }
 
   ngOnInit(): void { 
-    const convertedDateTime =  moment.utc(this.orderResponse.deivery_date).format('MM/DD/YYYY HH:MM');
-    this.successText = `Basket containing Tablets, Vitamins, 
-                        Supplements will be delivered to ${this.orderResponse.name}
+    this.orderResponse?.basketItems?.map(item => {
+      this.bastketItemsListDisplay += (`${item}` + ', ')
+    })
+    const convertedDateTime =  moment.utc(this.orderResponse.deivery_date).format('DD/MMM/YYYY HH:MM');
+    this.successText = `Basket containing ${this.bastketItemsListDisplay} will be delivered to ${this.orderResponse.name}
                         living at ${this.orderResponse.delivery_address} on ${convertedDateTime}`;
     this.getDeliveredBasketCount();  
   }
