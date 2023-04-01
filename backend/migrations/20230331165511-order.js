@@ -18,7 +18,7 @@ module.exports = {
       },
       gender: {
         type: Sequelize.ENUM,
-        values: ['Male', 'Female','Other'],
+        values: ['Father', 'Mother','Brother', 'Sister', 'Guardian'],
         allowNull: false,
         field: 'gender'
       },
@@ -59,12 +59,12 @@ module.exports = {
       },
       symptoms: {
         type: Sequelize.JSON,
-        allowNull: false,
+        allowNull: true,
         field: 'symptoms'
       },
       allergies: {
         type: Sequelize.JSON,
-        allowNull: false,
+        allowNull: true,
         field: 'allergies'
       },
       medication: {
