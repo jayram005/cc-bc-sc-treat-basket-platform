@@ -268,7 +268,7 @@
               <mat-grid-tile>
                 <mat-form-field appearance="outline">
                   <mat-label>Phone number</mat-label>
-                  <input matInput placeholder="Contact number" formControlName="phoneNumber" required>
+                  <input matInput code-challengeformatPhone maxlength="14" placeholder="Contact number" formControlName="phoneNumber" required>
                   <mat-error *ngIf="hasError(ContactDeliveryForm, 'phoneNumber', 'required')">
                     Phone number is required
                   </mat-error>
@@ -332,20 +332,20 @@
 
               <mat-grid-tile>
                 <mat-form-field appearance="outline">
-                  <mat-label>District</mat-label>
-                  <mat-select  placeholder="Enter District" formControlName="state" required>
+                  <mat-label>Province</mat-label>
+                  <mat-select  placeholder="Enter Province" formControlName="state" required>
                     <mat-option [value]="district"
                     *ngFor="let district of districts">{{district}}</mat-option>
                   </mat-select>
                   <mat-error *ngIf="hasError(ContactDeliveryForm, 'state', 'required')">
-                    District is required
+                    Province is required
                   </mat-error>
                 </mat-form-field>
               </mat-grid-tile>
               <mat-grid-tile>
                 <mat-form-field appearance="outline">
                   <mat-label>Postcode</mat-label>
-                  <input matInput placeholder="Enter city" formControlName="postcode" required>
+                  <input matInput placeholder="Enter Postcode" formControlName="postcode" required>
                   <mat-error *ngIf="hasError(ContactDeliveryForm, 'postcode', 'required')">
                     Postcode is required
                   </mat-error>

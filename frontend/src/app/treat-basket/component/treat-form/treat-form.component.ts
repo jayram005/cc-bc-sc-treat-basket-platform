@@ -201,6 +201,8 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
       deliveryDateformattedDate = `${moment(today).add(3, 'days').format("MM-DD-YYYY")} 18:00`;
     }
    
+    let formattedPhoneNumber = this.ContactDeliveryForm.value.phoneNumber;
+    
     const orderRequestBody = {
       name: this.childDetailsForm.value.childName,
       gender: this.selectedGender,
@@ -213,7 +215,7 @@ export class EnqueryFormComponent implements OnInit, OnDestroy {
       symptoms: this.symmptoms,
       allergies: this.allergies,
       medication: this.medications,
-      phoneNo: this.ContactDeliveryForm.value.phoneNumber,
+      phoneNo: formattedPhoneNumber.replace(/\D/g,''),
       email: this.ContactDeliveryForm.value.email,
       deliveryAddress: this.ContactDeliveryForm.value.deliveryAddress,
       deliveryDate: deliveryDateformattedDate,

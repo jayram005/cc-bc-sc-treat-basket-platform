@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 })
 export class FormatPhoneDirective implements OnInit, OnDestroy {
 
-    private _preValue: string;
+    private _preValue: string = '';
 
     @Input()
     set preValue(value: string) {
