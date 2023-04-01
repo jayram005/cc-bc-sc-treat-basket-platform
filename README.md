@@ -1,19 +1,9 @@
-# bc-cc-treat-basket-web
-The BC Gov is going to set up a service that delivers treat baskets to sick children. We want to allow members of the public to identify children to receive a basket.
+# bc-cc-treat-basket-platform
+The Treat Basket Delivery App is a platform that aims to deliver treat baskets to sick children. The primary goal of the app is to bring smiles to the faces of children who are going through a difficult time. The app will allow members of the public to identify children to receive a basket. The baskets will contain items that are both fun and useful for the child. The app will also provide delivery services to ensure that each child receives their basket
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.0. Please follow the below steps to clone, run, build, and deploy this proje
+# Steps Run the code on [GitPod](https://www.gitpod.io/docs/introduction) for a GitHub public repository
 
-# Steps Run the code on [GitPod](https://www.gitpod.io/docs/introduction)
-
-## Step 1 -  Installation of pre-requisites on your machine
-
-Install NodeJS on your machine with version 16.x and above using this website and as per your device OS [NodeJS](https://nodejs.org/en/download/)
-
-Run `npm install -g npm@latest` to install npm on your machine globally
-
-Run `npm install -g typescript` to install typescript on your machine globally
-
-Run `npm install -g @angular/cli@13.1.0` to install the angular cli globally in your machine
+Refer the document which provides you step by step guide to run the code on GitPod workspace.
 
 # License
 

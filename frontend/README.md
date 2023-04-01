@@ -17,9 +17,11 @@ Run `npm install -g @angular/cli@13.1.0` to install the angular cli globally in 
 
 ## Step 2 -  Clone the code using the below commands and install dependencies
 
-Clone this repository using the below command `git clone -b master [git@github.com:shubhadaathorat/bc-cc-brewery-web.git]` copy the git URL from the repo if the repository name is different
+Repository URL for this project: [https://github.com/jayram005/cc-bc-sc-treat-basket-platform]
 
-Important step - Open the terminal on your machine and navigate to the root folder of the project using `cd path_to_project_root_folder`
+Clone this repository using the below command `git clone -b master [git@github.com:jayram005/cc-bc-sc-treat-basket-platform.git]` copy the git URL from the repo if the repository name is different
+
+Important step - Open the terminal on your machine and navigate to the root folder of the project using `cd <path_to_project_root_folder>/frontend`
 
 Run `npm install` to install all the project dependencies.
 
@@ -27,7 +29,7 @@ Run `npm install` to install all the project dependencies.
 
 Run `npm run start-local` for a local server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-`Note: In order for the app to function locally the backend code also has to be running locally ` Refer to the steps to run that in respective backend repository project root folder ReadMe file
+`Note: In order for the app to fully function locally the backend code also has to be running locally ` Refer to the steps to run that in respective backend folder of this project root folder ReadMe file
 
 To Stop the execution navigate to the terminal and enter `ctrl+C` then type `Y` to stop the code execution locally
 
