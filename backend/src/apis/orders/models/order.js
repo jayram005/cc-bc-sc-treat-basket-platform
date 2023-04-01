@@ -40,7 +40,7 @@ const Order = database.config.define('order', {
 	},
 	relation: {
 		type: DataTypes.ENUM,
-		values: ['Father', 'Mother','Other'],
+		values: ['Father', 'Mother','Brother', 'Sister', 'Guardian'],
 		allowNull: false,
 		field: 'relation'
 	},
@@ -60,12 +60,12 @@ const Order = database.config.define('order', {
 	},
 	symptoms: {
 		type: DataTypes.JSON,
-		allowNull: false,
+		allowNull: true,
 		field: 'symptoms'
 	},
 	allergies: {
 		type: DataTypes.JSON,
-		allowNull: false,
+		allowNull: true,
 		field: 'allergies'
 	},
 	medication: {
@@ -80,7 +80,7 @@ const Order = database.config.define('order', {
 	},
 	email: {
 		type: DataTypes.STRING,
-		allowNull: true,
+		allowNull: false,
 		validate: {
 			isEmail: true
 		},
